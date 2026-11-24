@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ing. Arrezola | Ingeniería En Sistemas</title>
+
+    <!-- Meta Etiquetas Generales Y Open Graph Para Compartir En Redes Y WhatsApp -->
+    <meta name="description" content="Ing. Arrezola - Ingeniería En Sistemas. Armado de PC a medida, mantenimiento de cómputo, reparación de hardware y software, optimización de sistemas, cámaras CCTV analógicas e IP, soporte y software móvil, servidores multimedia DLNA y puntos de venta POS. Cobertura en Tecomán, Colima, Caleras, Madrid, Armería y Manzanillo.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Ing. Arrezola | Ingeniería En Sistemas">
+    <meta property="og:description" content="Soluciones tecnológicas integrales en Tecomán, Colima, Caleras, Madrid, Armería y Manzanillo: PCs a medida, CCTV, reparación, optimización, soporte móvil, DLNA y puntos de venta POS.">
+    <meta property="og:image" content="https://placehold.co/1200x630/0b0f19/38bdf8?text=Ing.+Arrezola+%7C+Ingenieria+En+Sistemas">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ing. Arrezola | Ingeniería En Sistemas">
+    <meta name="twitter:description" content="Ingeniería En Sistemas en Tecomán, Colima, Caleras, Madrid, Armería y Manzanillo.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fuente Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f19;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        /* Animación suave para el botón flotante de WhatsApp */
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.96);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.65);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 14px rgba(16, 185, 129, 0);
+            }
+            100% {
+                transform: scale(0.96);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+        }
+
+        .whatsapp-float {
+            animation: pulse-ring 2.5s infinite;
+        }
+
+        /* Tarjetas con efecto cristal sutil */
+        .glass-card {
+            background: rgba(17, 24, 39, 0.78);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(56, 189, 248, 0.16);
+            transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(56, 189, 248, 0.45);
+            box-shadow: 0 14px 30px -12px rgba(14, 165, 233, 0.28);
+        }
+
+        /* Transición de acordeón FAQ */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, opacity 0.35s ease;
+            opacity: 0;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 320px;
+            opacity: 1;
+        }
+
+        .faq-item.open .faq-chevron {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body id="top" class="antialiased selection:bg-sky-500 selection:text-white">
+
+    <!-- =========================================================================
+         BARRA DE NAVEGACIÓN SUPERIOR
+         Marca "Ing. Arrezola" con subtítulo "Soporte Y Sistemas" alineado limpio
+         y buena separación respecto a "Inicio" y demás enlaces.
+         ========================================================================= -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-6">
+            <!-- Identidad de Marca -->
+            <a href="#top" class="flex items-center gap-3.5 mr-8 lg:mr-16 shrink-0 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-500 to-emerald-500 flex items-center justify-center text-white text-lg shadow-lg shadow-sky-500/25 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-microchip"></i>
+                </div>
+                <div class="flex flex-col leading-tight">
+                    <span class="text-xl font-extrabold tracking-tight text-white whitespace-nowrap">
+                        Ing. <span class="text-sky-400">Arrezola</span>
+                    </span>
+                    <span class="text-xs font-semibold text-emerald-400 tracking-wide whitespace-nowrap mt-0.5">
+                        Ingeniería En Sistemas
+                    </span>
+                </div>
+            </a>
+
+            <!-- Enlaces Principales (Escritorio) -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#inicio" class="hover:text-sky-400 transition whitespace-nowrap">Inicio</a>
+                <a href="#servicios" class="hover:text-sky-400 transition whitespace-nowrap">Servicios</a>
+                <a href="#galeria" class="hover:text-sky-400 transition whitespace-nowrap">Galería De Trabajos</a>
+                <a href="#por-que-elegirnos" class="hover:text-sky-400 transition whitespace-nowrap">Por Qué Elegirnos</a>
+                <a href="#cobertura" class="hover:text-sky-400 transition whitespace-nowrap">Cobertura Y Horarios</a>
+                <a href="#cotizador" class="hover:text-sky-400 transition whitespace-nowrap">Cotizador Rápido</a>
+                <a href="#faq" class="hover:text-sky-400 transition whitespace-nowrap">Preguntas Frecuentes</a>
+            </nav>
+
+            <!-- Botón Menú Móvil / Tablet -->
+            <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Abrir Menú De Navegación"
+                    class="lg:hidden w-11 h-11 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 hover:text-sky-400 hover:border-sky-500/50 flex items-center justify-center transition">
+                <i id="mobile-menu-icon" class="fa-solid fa-bars text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Menú Desplegable Móvil / Tablet -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-slate-950/95 border-b border-slate-800 px-4 py-4 space-y-2 text-sm font-medium text-slate-300">
+            <a href="#inicio" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-slate-900 hover:text-sky-400 transition">Inicio</a>
+            <a href="#servicios" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-slate-900 hover:text-sky-400 transition">Servicios</a>
+            <a href="#galeria" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-slate-900 hover:text-sky-400 transition">Galería De Trabajos</a>
+            <a href="#por-que-elegirnos" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-slate-900 hover:text-sky-400 transition">Por Qué Elegirnos</a>
+            <a href="#cobertura" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-slate-900 hover:text-sky-400 transition">Cobertura Y Horarios</a>
+            <a href="#cotizador" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-slate-900 hover:text-sky-400 transition">Cotizador Rápido</a>
+            <a href="#faq" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-slate-900 hover:text-sky-400 transition">Preguntas Frecuentes</a>
+        </div>
+    </header>
+
+    <!-- =========================================================================
+         SECCIÓN HERO (PORTADA CENTRADA CON HOLGURA)
+         ========================================================================= -->
+    <section id="inicio" class="relative pt-36 pb-20 lg:pt-44 lg:pb-28 overflow-hidden">
+        <div class="absolute top-24 left-1/2 -translate-x-1/2 w-[640px] h-[340px] bg-sky-500/15 rounded-full blur-[125px] -z-10"></div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+            <div class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs sm:text-sm font-medium mb-8">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 mr-2.5 animate-ping"></span>
+                Ingeniería En Sistemas En Tecomán, Colima, Caleras, Madrid, Armería Y Manzanillo
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight text-center max-w-4xl mx-auto mb-7">
+                Soluciones Tecnológicas Integrales Con <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-emerald-300">Ing. Arrezola</span>
+            </h1>
+
+            <p class="text-base sm:text-lg text-slate-400 text-center max-w-3xl mx-auto mb-10 leading-relaxed">
+                Atención Profesional en Armado de PC, Mantenimiento Correctivo y Preventivo de Equipos De Cómputo, Reparación De Hardware Y Software, Optimización De Sistemas Operativos, Instalación De Cámaras CCTV Analógicas E IP, Soporte Móvil Y Líneas Telefónicas, Servidor DLNA Para Películas, Sistemas De Punto De Venta, Redes Wi-Fi Y Cableado Estructurado, Configuración De Impresoras Y Periféricos En Red, Respaldo Y Recuperación De Datos, Instalación De Software, Drivers Y Office, Asesoría Y Cotización Para Compra De Equipo y Soporte Remoto.
+            </p>
+
+            <div class="flex flex-wrap items-center justify-center gap-4">
+                <a href="#servicios" class="px-7 py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-emerald-600 hover:from-sky-400 hover:to-emerald-500 text-white font-bold text-sm sm:text-base shadow-lg shadow-sky-500/25 transition">
+                    Ver Servicios
+                </a>
+                <a href="#cotizador" class="px-7 py-3.5 rounded-xl bg-slate-800/90 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold text-sm sm:text-base transition">
+                    Ir Al Cotizador Rápido
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         SECCIÓN DE 8 SERVICIOS (FOTO ARRIBA, TÍTULO ABAJO, DESCRIPCIÓN Y CONSULTA)
+         ========================================================================= -->
+    <section id="servicios" class="py-20 bg-slate-900/45 border-y border-slate-800/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 flex flex-col items-center">
+                <span class="text-emerald-400 font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3">Catálogo Especializado</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white text-center mb-4">Nuestros Servicios</h2>
+                <p class="text-slate-400 text-center text-sm sm:text-base">
+                    Cada categoría cuenta con atención técnica detallada para hogares, oficinas y negocios.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- 1. Armado De PC -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1587202372634-32705e3bf49c?auto=format&fit=crop&w=800&q=80"
+                             onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Armado+De+PC'"
+                             alt="Armado De PC"
+                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2">Armado De PC</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Ensamble de computadoras para oficina, estudio o alto rendimiento con gestión ordenada de cables y selección de componentes.
+                            </p>
+                        </div>
+                        <a href="#" onclick="consultarServicio('Armado De PC', event)"
+                           class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-emerald-300 transition pt-2 border-t border-slate-800/80">
+                            <span>Consultar Este Servicio</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 2. Mantenimiento Preventivo Y Correctivo De Cómputo -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=800&q=80"
+                             onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Mantenimiento+Preventivo+Y+Correctivo'"
+                             alt="Mantenimiento Preventivo Y Correctivo De Cómputo"
+                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2">Mantenimiento Preventivo Y Correctivo De Cómputo</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Limpieza profunda interna, cambio de pasta térmica, revisión de ventiladores y corrección de fallas para prevenir sobrecalentamiento y paradas.
+                            </p>
+                        </div>
+                        <a href="#" onclick="consultarServicio('Mantenimiento Preventivo Y Correctivo De Cómputo', event)"
+                           class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-emerald-300 transition pt-2 border-t border-slate-800/80">
+                            <span>Consultar Este Servicio</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 3. Reparación (Hardware Y Software) -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
+                             onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Reparacion+(Hardware+Y+Software)'"
+                             alt="Reparación (Hardware Y Software)"
+                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2">Reparación (Hardware Y Software)</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Evaluación de fallas, reemplazo de piezas, actualización de memoria o SSD, formateo, respaldo de información e instalación de programas.
+                            </p>
+                        </div>
+                        <a href="#" onclick="consultarServicio('Reparación (Hardware Y Software)', event)"
+                           class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-emerald-300 transition pt-2 border-t border-slate-800/80">
+                            <span>Consultar Este Servicio</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 4. Optimización De Sistemas -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80"
+                             onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Optimizacion+De+Sistemas'"
+                             alt="Optimización De Sistemas"
+                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2">Optimización De Sistemas</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Mejora de tiempos de arranque, depuración de procesos innecesarios, ajuste de energía y mayor fluidez en el uso diario.
+                            </p>
+                        </div>
+                        <a href="#" onclick="consultarServicio('Optimización De Sistemas', event)"
+                           class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-emerald-300 transition pt-2 border-t border-slate-800/80">
+                            <span>Consultar Este Servicio</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 5. Cámaras CCTV (Analógicas E IP) -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=800&q=80"
+                             onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Camaras+CCTV+(Analogicas+E+IP)'"
+                             alt="Cámaras CCTV (Analógicas E IP)"
+                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2">Cámaras CCTV (Analógicas E IP)</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Implementación, cableado, configuración de grabadores y visualización remota desde tu teléfono celular para casa o negocio.
+                            </p>
+                        </div>
+                        <a href="#" onclick="consultarServicio('Cámaras CCTV (Analógicas E IP)', event)"
+                           class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-emerald-300 transition pt-2 border-t border-slate-800/80">
+                            <span>Consultar Este Servicio</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 6. Soporte Y Software Móvil -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"
+                             onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Soporte+Y+Software+Movil'"
+                             alt="Soporte Y Software Móvil"
+                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2">Soporte Y Software Móvil</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Eliminación de virus y anuncios invasivos en teléfonos, corrección de fallas de software y activación de líneas telefónicas.
+                            </p>
+                        </div>
+                        <a href="#" onclick="consultarServicio('Soporte Y Software Móvil', event)"
+                           class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-emerald-300 transition pt-2 border-t border-slate-800/80">
+                            <span>Consultar Este Servicio</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 7. Servidores Multimedia (DLNA) -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80"
+                             onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Servidores+Multimedia+(DLNA)'"
+                             alt="Servidores Multimedia (DLNA)"
+                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2">Servidores Multimedia (DLNA)</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Implementación de servidor multimedia en red local para reproducir películas, series y archivos en Smart TV sin consumir datos.
+                            </p>
+                        </div>
+                        <a href="#" onclick="consultarServicio('Servidores Multimedia (DLNA)', event)"
+                           class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-emerald-300 transition pt-2 border-t border-slate-800/80">
+                            <span>Consultar Este Servicio</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 8. Puntos De Venta (POS) -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80"
+                             onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Puntos+De+Venta+(POS)'"
+                             alt="Puntos De Venta (POS)"
+                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2">Puntos De Venta (POS)</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Diseño, implementación y puesta en marcha de puntos de venta para comercios, control de inventarios, caja, lectores e impresoras.
+                            </p>
+                        </div>
+                        <a href="#" onclick="consultarServicio('Puntos De Venta (POS)', event)"
+                           class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-emerald-300 transition pt-2 border-t border-slate-800/80">
+                            <span>Consultar Este Servicio</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 9. Redes Wi-Fi Y Cableado Estructurado -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1544197150-b99a544bbc54?auto=format&fit=crop&w=800&q=80"
+                             onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Redes+Wi-Fi+Y+Cableado'"
+                             alt="Redes Wi-Fi Y Cableado Estructurado"
+                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2">Redes Wi-Fi Y Cableado Estructurado</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Configuración de routers, puntos de acceso (AP), extensores, IP estática, mejora de señal/cobertura y orden de cables.
+                            </p>
+                        </div>
+                        <a href="#" onclick="consultarServicio('Redes Wi-Fi Y Cableado Estructurado', event)"
+                           class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-emerald-300 transition pt-2 border-t border-slate-800/80">
+                            <span>Consultar Este Servicio</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 10. Respaldo Y Recuperación De Datos -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=800&q=80"
+                             onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Respaldo+Y+Datos'"
+                             alt="Respaldo Y Recuperación De Datos"
+                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2">Respaldo Y Recuperación De Datos</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Copias de seguridad, organización de archivos importantes, migración de información a discos nuevos (SSD/NVMe) o recuperación de datos en unidades dañadas.
+                            </p>
+                        </div>
+                        <a href="#" onclick="consultarServicio('Respaldo Y Recuperación De Datos', event)"
+                           class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-emerald-300 transition pt-2 border-t border-slate-800/80">
+                            <span>Consultar Este Servicio</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 11. Instalación De Software, Drivers Y Office -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80"
+                             onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Software,+Drivers+Y+Office'"
+                             alt="Instalación De Software, Drivers Y Office"
+                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2">Instalación De Software, Drivers Y Office</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Dejar listas las computadoras nuevas o formateadas con controladores actualizados, herramientas básicas y software de trabajo sin basura ni programas piratas riesgosos.
+                            </p>
+                        </div>
+                        <a href="#" onclick="consultarServicio('Instalación De Software, Drivers Y Office', event)"
+                           class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-emerald-300 transition pt-2 border-t border-slate-800/80">
+                            <span>Consultar Este Servicio</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 12. Configuración De Impresoras Y Periféricos En Red -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=800&q=80"
+                             onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Impresoras+Y+Perifericos'"
+                             alt="Configuración De Impresoras Y Periféricos En Red"
+                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2">Configuración De Impresoras Y Periféricos En Red</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Conectar impresoras por Wi-Fi o red local, compartirlas entre varias PCs, calibrar o resolver fallos de impresión/escaneo.
+                            </p>
+                        </div>
+                        <a href="#" onclick="consultarServicio('Configuración De Impresoras Y Periféricos En Red', event)"
+                           class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-emerald-300 transition pt-2 border-t border-slate-800/80">
+                            <span>Consultar Este Servicio</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 13. Asesoría Y Cotización Para Compra De Equipo -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=800&q=80"
+                             onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Asesoria+Y+Cotizacion'"
+                             alt="Asesoría Y Cotización Para Compra De Equipo"
+                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2">Asesoría Y Cotización Para Compra De Equipo</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Ayudar a clientes o negocios a elegir qué PC, laptop, disco, cámara o equipo comprar según su presupuesto y uso real para que no tiren su dinero.
+                            </p>
+                        </div>
+                        <a href="#" onclick="consultarServicio('Asesoría Y Cotización Para Compra De Equipo', event)"
+                           class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-emerald-300 transition pt-2 border-t border-slate-800/80">
+                            <span>Consultar Este Servicio</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 14. Soporte Remoto Rápido -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
+                             onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Soporte+Remoto+Rapido'"
+                             alt="Soporte Remoto Rápido"
+                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2">Soporte Remoto Rápido</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Resolver fallas de software, configuraciones o ajustes a distancia cuando el cliente no necesita llevar el equipo o está lejos.
+                            </p>
+                        </div>
+                        <a href="#" onclick="consultarServicio('Soporte Remoto Rápido', event)"
+                           class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-emerald-300 transition pt-2 border-t border-slate-800/80">
+                            <span>Consultar Este Servicio</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         GALERÍA FILTRABLE DE TRABAJOS REALIZADOS + LIGHTBOX CON FICHA DE PROYECTO
+         ========================================================================= -->
+    <section id="galeria" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 flex flex-col items-center">
+                <span class="text-sky-400 font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3">Portafolio Visual</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white text-center mb-4">Galería De Trabajos Realizados</h2>
+                <p class="text-slate-400 text-center text-sm sm:text-base max-w-2xl mb-8">
+                    Selecciona una fotografía para verla ampliada junto con su categoría y el alcance de cada implementación.
+                </p>
+                        </div>
+                        <a href="#" onclick="consultarServicio('Armado De PC A Medida', event)"
+                           class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-emerald-300 transition pt-2 border-t border-slate-800/80">
+                            <span>Consultar Este Servicio</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 2. Mantenimiento De Cómputo -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=800&q=80"
+                             onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Mantenimiento+De+Computo'"
+                             alt="Mantenimiento De Cómputo"
+                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2">Mantenimiento De Cómputo</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Limpieza profunda interna, remoción de polvo, revisión de ventiladores y cambio de pasta térmica para controlar temperaturas.
+                            </p>
+                        </div>
+                        <a href="#" onclick="consultarServicio('Mantenimiento De Cómputo', event)"
+                           class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-emerald-300 transition pt-2 border-t border-slate-800/80">
+                            <span>Consultar Este Servicio</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 3. Reparación De Hardware Y Software -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
+                             onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Reparacion+De+Hardware+Y+Software'"
+                             alt="Reparación De Hardware Y Software"
+                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2">Reparación De Hardware Y Software</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Diagnóstico de fallas, reemplazo de piezas, actualización de memoria o SSD, formateo, respaldo de información e instalación de programas.
+                            </p>
+                        </div>
+                        <a href="#" onclick="consultarServicio('Reparación De Hardware Y Software', event)"
+                           class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-emerald-300 transition pt-2 border-t border-slate-800/80">
+                            <span>Consultar Este Servicio</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 4. Optimización De Sistemas Operativos -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80"
+                             onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Optimizacion+De+Sistemas+Operativos'"
+                             alt="Optimización De Sistemas Operativos"
+                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2">Optimización De Sistemas Operativos</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Mejora de tiempos de arranque, depuración de procesos innecesarios, ajuste de energía y mayor fluidez en el uso diario.
+                            </p>
+                        </div>
+                        <a href="#" onclick="consultarServicio('Optimización De Sistemas Operativos', event)"
+                           class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-emerald-300 transition pt-2 border-t border-slate-800/80">
+                            <span>Consultar Este Servicio</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 5. Cámaras CCTV Analógicas E IP -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=800&q=80"
+                             onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Camaras+CCTV+Analogicas+E+IP'"
+                             alt="Cámaras CCTV Analógicas E IP"
+                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2">Cámaras CCTV Analógicas E IP</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Instalación, cableado, configuración de grabadores y visualización remota desde tu teléfono celular para casa o negocio.
+                            </p>
+                        </div>
+                        <a href="#" onclick="consultarServicio('Cámaras CCTV Analógicas E IP', event)"
+                           class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-emerald-300 transition pt-2 border-t border-slate-800/80">
+                            <span>Consultar Este Servicio</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 6. Soporte Móvil Y Líneas Telefónicas -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"
+                             onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Soporte+Movil+Y+Lineas+Telefonicas'"
+                             alt="Soporte Móvil Y Líneas Telefónicas"
+                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2">Soporte Móvil Y Líneas Telefónicas</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Eliminación de virus y anuncios invasivos en teléfonos, corrección de fallas de software y activación de líneas telefónicas.
+                            </p>
+                        </div>
+                        <a href="#" onclick="consultarServicio('Soporte Móvil Y Líneas Telefónicas', event)"
+                           class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-emerald-300 transition pt-2 border-t border-slate-800/80">
+                            <span>Consultar Este Servicio</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 7. Servidor DLNA Para Películas -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80"
+                             onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Servidor+DLNA+Para+Peliculas'"
+                             alt="Servidor DLNA Para Películas"
+                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2">Servidor DLNA Para Películas</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Implementación de servidor multimedia en red local para reproducir películas, series y archivos en Smart TV sin consumir datos.
+                            </p>
+                        </div>
+                        <a href="#" onclick="consultarServicio('Servidor DLNA Para Películas', event)"
+                           class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-emerald-300 transition pt-2 border-t border-slate-800/80">
+                            <span>Consultar Este Servicio</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 8. Sistemas De Punto De Venta -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80"
+                             onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Sistemas+De+Punto+De+Venta'"
+                             alt="Sistemas De Punto De Venta"
+                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2">Sistemas De Punto De Venta</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Creación, instalación y puesta en marcha de puntos de venta para comercios, control de inventarios, caja, lectores e impresoras.
+                            </p>
+                        </div>
+                        <a href="#" onclick="consultarServicio('Sistemas De Punto De Venta', event)"
+                           class="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-emerald-300 transition pt-2 border-t border-slate-800/80">
+                            <span>Consultar Este Servicio</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         GALERÍA FILTRABLE DE TRABAJOS REALIZADOS + LIGHTBOX CON FICHA TÉCNICA
+         ========================================================================= -->
+    <section id="galeria" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 flex flex-col items-center">
+                <span class="text-sky-400 font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3">Portafolio Visual</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white text-center mb-4">Galería De Trabajos Realizados</h2>
+                <p class="text-slate-400 text-center text-sm sm:text-base max-w-2xl mb-8">
+                    Selecciona una fotografía para verla ampliada junto con su categoría y ficha técnica breve.
+                </p>
+
+                <!-- Filtros en Title Case -->
+                <div class="flex flex-wrap items-center justify-center gap-2.5" id="gallery-filters">
+                    <button type="button" data-filter="all"
+                            class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-sky-500 text-white transition">
+                        Todos
+                    </button>
+                    <button type="button" data-filter="pc"
+                            class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
+                        PCs Armadas
+                    </button>
+                    <button type="button" data-filter="mantenimiento"
+                            class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
+                        Mantenimientos
+                    </button>
+                    <button type="button" data-filter="cctv"
+                            class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
+                        Cámaras CCTV
+                    </button>
+                    <button type="button" data-filter="redes-dlna-pos"
+                            class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
+                        Redes, DLNA Y POS
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="gallery-grid">
+
+                <!-- Trabajo 1: PCs Armadas -->
+                <div onclick="openLightbox(this)"
+                     data-category="pc"
+                     data-cat-label="PCs Armadas"
+                     data-title="PC De Escritorio Y Gaming A Medida"
+                     data-specs="Ensamble completo, flujo de aire optimizado, cableado ordenado, pruebas de estrés y Windows optimizado."
+                     class="gallery-item cursor-pointer group rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-sky-500/50 transition flex flex-col">
+                    <div class="relative h-52 overflow-hidden bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=800&q=80"
+                             onerror="this.src='https://placehold.co/600x450/0f172a/38bdf8?text=PC+Armada+A+Medida'"
+                             alt="PC De Escritorio Y Gaming A Medida"
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-slate-950/45 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                            <span class="w-11 h-11 rounded-full bg-sky-500 text-white flex items-center justify-center shadow-lg">
+                                <i class="fa-solid fa-expand"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4 flex-1 flex flex-col justify-between bg-slate-900/95 border-t border-slate-800">
+                        <div>
+                            <span class="text-xs font-semibold text-sky-400">PCs Armadas</span>
+                            <h3 class="text-white font-bold text-base mt-1">PC De Escritorio Y Gaming A Medida</h3>
+                        </div>
+                        <p class="text-slate-400 text-xs mt-2 line-clamp-2">
+                            Ensamble completo, flujo de aire optimizado, cableado ordenado y pruebas de estabilidad.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Trabajo 2: Mantenimientos -->
+                <div onclick="openLightbox(this)"
+                     data-category="mantenimiento"
+                     data-cat-label="Mantenimientos"
+                     data-title="Mantenimiento Preventivo Y Correctivo"
+                     data-specs="Limpieza interna de disipadores y ventiladores, retiro de polvo, cambio de pasta térmica y corrección de fallas."
+                     class="gallery-item cursor-pointer group rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-sky-500/50 transition flex flex-col">
+                    <div class="relative h-52 overflow-hidden bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=800&q=80"
+                             onerror="this.src='https://placehold.co/600x450/0f172a/38bdf8?text=Mantenimiento+Preventivo+Y+Correctivo'"
+                             alt="Mantenimiento Preventivo Y Correctivo"
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-slate-950/45 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                            <span class="w-11 h-11 rounded-full bg-sky-500 text-white flex items-center justify-center shadow-lg">
+                                <i class="fa-solid fa-expand"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4 flex-1 flex flex-col justify-between bg-slate-900/95 border-t border-slate-800">
+                        <div>
+                            <span class="text-xs font-semibold text-emerald-400">Mantenimientos</span>
+                            <h3 class="text-white font-bold text-base mt-1">Mantenimiento Preventivo Y Correctivo</h3>
+                        </div>
+                        <p class="text-slate-400 text-xs mt-2 line-clamp-2">
+                            Limpieza interna profunda, pasta térmica y corrección de fallas para mejor refrigeración y estabilidad.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Trabajo 3: Cámaras CCTV -->
+                <div onclick="openLightbox(this)"
+                     data-category="cctv"
+                     data-cat-label="Cámaras CCTV"
+                     data-title="Instalación CCTV Analógica E IP"
+                     data-specs="Montaje de cámaras, canalización limpia, grabación continua y configuración de app móvil para monitoreo remoto."
+                     class="gallery-item cursor-pointer group rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-sky-500/50 transition flex flex-col">
+                    <div class="relative h-52 overflow-hidden bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1582139329536-e7284fece509?auto=format&fit=crop&w=800&q=80"
+                             onerror="this.src='https://placehold.co/600x450/0f172a/38bdf8?text=Instalacion+CCTV'"
+                             alt="Instalación CCTV Analógica E IP"
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-slate-950/45 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                            <span class="w-11 h-11 rounded-full bg-sky-500 text-white flex items-center justify-center shadow-lg">
+                                <i class="fa-solid fa-expand"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4 flex-1 flex flex-col justify-between bg-slate-900/95 border-t border-slate-800">
+                        <div>
+                            <span class="text-xs font-semibold text-rose-400">Cámaras CCTV</span>
+                            <h3 class="text-white font-bold text-base mt-1">Instalación CCTV Analógica E IP</h3>
+                        </div>
+                        <p class="text-slate-400 text-xs mt-2 line-clamp-2">
+                            Montaje, cableado y configuración de visualización en celular para hogar o comercio.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Trabajo 4: Redes, DLNA Y POS -->
+                <div onclick="openLightbox(this)"
+                     data-category="redes-dlna-pos"
+                     data-cat-label="Redes, DLNA Y POS"
+                     data-title="Servidor DLNA Y Punto De Venta"
+                     data-specs="Configuración de biblioteca multimedia en red local para Smart TV e implementación de sistema de punto de venta."
+                     class="gallery-item cursor-pointer group rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-sky-500/50 transition flex flex-col">
+                    <div class="relative h-52 overflow-hidden bg-slate-800">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80"
+                             onerror="this.src='https://placehold.co/600x450/0f172a/38bdf8?text=Redes+DLNA+Y+POS'"
+                             alt="Servidor DLNA Y Punto De Venta"
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-slate-950/45 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                            <span class="w-11 h-11 rounded-full bg-sky-500 text-white flex items-center justify-center shadow-lg">
+                                <i class="fa-solid fa-expand"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4 flex-1 flex flex-col justify-between bg-slate-900/95 border-t border-slate-800">
+                        <div>
+                            <span class="text-xs font-semibold text-amber-400">Redes, DLNA Y POS</span>
+                            <h3 class="text-white font-bold text-base mt-1">Servidor DLNA Y Punto De Venta</h3>
+                        </div>
+                        <p class="text-slate-400 text-xs mt-2 line-clamp-2">
+                            Acceso multimedia local en Smart TV y sistemas de punto de venta listos para operar.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         SECCIÓN ¿POR QUÉ ELEGIR A ING. ARREZOLA?
+         ========================================================================= -->
+    <section id="por-que-elegirnos" class="py-20 bg-slate-900/45 border-y border-slate-800/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 flex flex-col items-center">
+                <span class="text-emerald-400 font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3">Respaldo Y Confianza</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white text-center">¿Por Qué Elegir A Ing. Arrezola?</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-7 rounded-2xl text-center">
+                    <div class="w-14 h-14 mx-auto mb-5 rounded-2xl bg-sky-500/15 border border-sky-500/30 flex items-center justify-center text-sky-400 text-2xl">
+                        <i class="fa-solid fa-magnifying-glass-chart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Diagnóstico De Ingeniería</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Analizamos cada equipo, cámara, red o sistema con criterio de ingeniería en sistemas computacionales para resolver la causa raíz.
+                    </p>
+                </div>
+
+                <div class="glass-card p-7 rounded-2xl text-center">
+                    <div class="w-14 h-14 mx-auto mb-5 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Implementación Ordenada Y Duradera</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Cuidamos cada detalle en el ensamble de PCs, mantenimiento preventivo y correctivo, redes, CCTV, respaldo de datos y puntos de venta.
+                    </p>
+                </div>
+
+                <div class="glass-card p-7 rounded-2xl text-center">
+                    <div class="w-14 h-14 mx-auto mb-5 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Trabajo Ordenado Y Duradero</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Cuidamos cada detalle en el ensamble de PCs, cableado de seguridad, optimización de sistemas y puesta en marcha de puntos de venta.
+                    </p>
+                </div>
+
+                <div class="glass-card p-7 rounded-2xl text-center">
+                    <div class="w-14 h-14 mx-auto mb-5 rounded-2xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-2xl">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Atención Directa Y Cercana</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Comunicación directa para cotizaciones, tiempos estimados y seguimiento en cada una de las localidades cubiertas.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         COBERTURA Y HORARIOS
+         ========================================================================= -->
+    <section id="cobertura" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14 flex flex-col items-center">
+                <span class="text-sky-400 font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3">Alcance Regional</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white text-center mb-4">Cobertura Y Horarios</h2>
+                <p class="text-slate-400 text-center text-sm sm:text-base">
+                    Atención en domicilio, negocio o taller según el tipo de servicio requerido.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Localidades Cubiertas -->
+                <div class="glass-card p-7 rounded-2xl">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-11 h-11 rounded-xl bg-sky-500/15 border border-sky-500/30 flex items-center justify-center text-sky-400 text-xl">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Localidades Cubiertas</h3>
+                            <p class="text-xs text-slate-400">Zona De Operación Activa</p>
+                        </div>
+                    </div>
+
+                    <p class="text-slate-400 text-sm leading-relaxed mb-5">
+                        Brindamos atención y programación de proyectos en las siguientes localidades:
+                    </p>
+
+                    <div class="flex flex-wrap gap-2.5">
+                        <span class="px-4 py-2 rounded-xl bg-slate-800/90 border border-sky-500/30 text-sky-300 text-sm font-semibold">Tecomán</span>
+                        <span class="px-4 py-2 rounded-xl bg-slate-800/90 border border-sky-500/30 text-sky-300 text-sm font-semibold">Colima</span>
+                        <span class="px-4 py-2 rounded-xl bg-slate-800/90 border border-sky-500/30 text-sky-300 text-sm font-semibold">Caleras</span>
+                        <span class="px-4 py-2 rounded-xl bg-slate-800/90 border border-sky-500/30 text-sky-300 text-sm font-semibold">Madrid</span>
+                        <span class="px-4 py-2 rounded-xl bg-slate-800/90 border border-sky-500/30 text-sky-300 text-sm font-semibold">Armería</span>
+                        <span class="px-4 py-2 rounded-xl bg-slate-800/90 border border-sky-500/30 text-sky-300 text-sm font-semibold">Manzanillo</span>
+                    </div>
+                </div>
+
+                <!-- Horarios De Atención -->
+                <div class="glass-card p-7 rounded-2xl">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-11 h-11 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xl">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Horarios De Atención</h3>
+                            <p class="text-xs text-slate-400">Cotizaciones Y Citas Programadas</p>
+                        </div>
+                    </div>
+
+                    <ul class="space-y-3.5 text-sm text-slate-300">
+                        <li class="flex items-center justify-between py-2 border-b border-slate-800/80">
+                            <span class="font-semibold text-white">Lunes A Viernes</span>
+                            <span class="text-emerald-400 font-medium">9:00 AM - 7:00 PM</span>
+                        </li>
+                        <li class="flex items-center justify-between py-2 border-b border-slate-800/80">
+                            <span class="font-semibold text-white">Sábados</span>
+                            <span class="text-sky-400 font-medium">9:00 AM - 3:00 PM</span>
+                        </li>
+                        <li class="flex items-center justify-between py-2">
+                            <span class="font-semibold text-white">Domingos Y Visitas</span>
+                            <span class="text-slate-400 font-medium">Previa Cita / Urgencias</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         COTIZADOR RÁPIDO (ARMA EL MENSAJE PARA WHATSAPP)
+         ========================================================================= -->
+    <section id="cotizador" class="py-20 bg-slate-900/45 border-y border-slate-800/70">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12 flex flex-col items-center">
+                <span class="text-emerald-400 font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3">Solicitud Directa</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white text-center mb-4">Cotizador Rápido</h2>
+                <p class="text-slate-400 text-center text-sm sm:text-base">
+                    Completa estos datos y se preparará tu mensaje listo para enviar por WhatsApp.
+                </p>
+            </div>
+
+            <form id="quote-form" onsubmit="enviarCotizacion(event)" class="glass-card p-6 sm:p-8 rounded-2xl space-y-5">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <!-- Nombre Del Cliente -->
+                    <div>
+                        <label for="quote-name" class="block text-sm font-semibold text-white mb-2">Tu Nombre</label>
+                        <input type="text" id="quote-name" placeholder="Ej. Carlos López"
+                               class="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 transition">
+                    </div>
+
+                    <!-- Servicio Requerido -->
+                    <div>
+                        <label for="quote-service" class="block text-sm font-semibold text-white mb-2">Servicio Requerido</label>
+                        <select id="quote-service"
+                                class="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-slate-700 text-white focus:outline-none focus:border-sky-400 transition">
+                            <option value="Armado De PC">Armado De PC</option>
+                            <option value="Mantenimiento Preventivo Y Correctivo De Cómputo">Mantenimiento Preventivo Y Correctivo De Cómputo</option>
+                            <option value="Reparación (Hardware Y Software)">Reparación (Hardware Y Software)</option>
+                            <option value="Optimización De Sistemas">Optimización De Sistemas</option>
+                            <option value="Cámaras CCTV (Analógicas E IP)">Cámaras CCTV (Analógicas E IP)</option>
+                            <option value="Soporte Y Software Móvil">Soporte Y Software Móvil</option>
+                            <option value="Servidores Multimedia (DLNA)">Servidores Multimedia (DLNA)</option>
+                            <option value="Puntos De Venta (POS)">Puntos De Venta (POS)</option>
+                            <option value="Redes Wi-Fi Y Cableado Estructurado">Redes Wi-Fi Y Cableado Estructurado</option>
+                            <option value="Respaldo Y Recuperación De Datos">Respaldo Y Recuperación De Datos</option>
+                            <option value="Instalación De Software, Drivers Y Office">Instalación De Software, Drivers Y Office</option>
+                            <option value="Configuración De Impresoras Y Periféricos En Red">Configuración De Impresoras Y Periféricos En Red</option>
+                            <option value="Asesoría Y Cotización Para Compra De Equipo">Asesoría Y Cotización Para Compra De Equipo</option>
+                            <option value="Soporte Remoto Rápido">Soporte Remoto Rápido</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Localidad (Selección Rápida + Campo Editable) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                        <label for="quote-location-select" class="block text-sm font-semibold text-white mb-2">Localidad Principal</label>
+                        <select id="quote-location-select" onchange="syncLocationInput()"
+                                class="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-slate-700 text-white focus:outline-none focus:border-sky-400 transition">
+                            <option value="Tecomán">Tecomán</option>
+                            <option value="Colima">Colima</option>
+                            <option value="Caleras">Caleras</option>
+                            <option value="Madrid">Madrid</option>
+                            <option value="Armería">Armería</option>
+                            <option value="Manzanillo">Manzanillo</option>
+                            <option value="Otra">Otra Localidad</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="quote-location" class="block text-sm font-semibold text-white mb-2">Especificar Localidad O Colonia</label>
+                        <input type="text" id="quote-location" value="Tecomán" placeholder="Ej. Tecomán, Colima, Caleras, Madrid, Armería, Manzanillo..."
+                               class="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 transition">
+                    </div>
+                </div>
+
+                <!-- Detalles Del Requerimiento -->
+                <div>
+                    <label for="quote-details" class="block text-sm font-semibold text-white mb-2">Detalles Del Problema O Requerimiento</label>
+                    <textarea id="quote-details" rows="4" required
+                              placeholder="Describe brevemente lo que necesitas: modelo de PC o teléfono, cantidad de cámaras, tipo de negocio para punto de venta, fallas o síntomas..."
+                              class="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 transition"></textarea>
+                </div>
+
+                <!-- Aviso En Pantalla (Sin alert) -->
+                <div id="quote-feedback" class="hidden px-4 py-3 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 text-sm"></div>
+
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+                    <span class="text-xs text-slate-400">
+                        Se abrirá WhatsApp con tu mensaje redactado automáticamente.
+                    </span>
+                    <button type="submit"
+                            class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-emerald-600 hover:from-sky-400 hover:to-emerald-500 text-white font-bold text-sm sm:text-base shadow-lg shadow-sky-500/25 transition">
+                        Preparar Cotización En WhatsApp
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         PREGUNTAS FRECUENTES (FAQ DESPLEGABLE)
+         ========================================================================= -->
+    <section id="faq" class="py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12 flex flex-col items-center">
+                <span class="text-sky-400 font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3">Resuelve Tus Dudas</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white text-center">Preguntas Frecuentes</h2>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Pregunta 1 -->
+                <div class="faq-item glass-card rounded-2xl overflow-hidden">
+                    <button type="button" onclick="toggleFaq(this)"
+                            class="w-full px-6 py-4 text-left flex items-center justify-between gap-4 text-white font-semibold text-sm sm:text-base">
+                        <span>¿En Qué Localidades Ofrecen Soluciones?</span>
+                        <i class="fa-solid fa-chevron-down faq-chevron text-sky-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="pb-5 text-slate-400 text-sm leading-relaxed">
+                            Brindamos atención y programación de proyectos en Tecomán, Colima, Caleras, Madrid, Armería y Manzanillo.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pregunta 2 -->
+                <div class="faq-item glass-card rounded-2xl overflow-hidden">
+                    <button type="button" onclick="toggleFaq(this)"
+                            class="w-full px-6 py-4 text-left flex items-center justify-between gap-4 text-white font-semibold text-sm sm:text-base">
+                        <span>¿Realizan Mantenimiento Preventivo Y Correctivo, Respaldo De Datos Y Redes?</span>
+                        <i class="fa-solid fa-chevron-down faq-chevron text-sky-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="pb-5 text-slate-400 text-sm leading-relaxed">
+                            Sí. Atendemos mantenimiento preventivo y correctivo de cómputo, migración/respaldo o recuperación de datos, configuración de redes Wi-Fi, cableado estructurado, impresoras en red y soporte remoto.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pregunta 3 -->
+                <div class="faq-item glass-card rounded-2xl overflow-hidden">
+                    <button type="button" onclick="toggleFaq(this)"
+                            class="w-full px-6 py-4 text-left flex items-center justify-between gap-4 text-white font-semibold text-sm sm:text-base">
+                        <span>¿Cómo Funciona El Servidor DLNA Para Películas Y Los Puntos De Venta?</span>
+                        <i class="fa-solid fa-chevron-down faq-chevron text-sky-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="pb-5 text-slate-400 text-sm leading-relaxed">
+                            Configuramos un servidor DLNA en tu red local para que puedas ver tus películas y series en televisores compatibles dentro de casa, y desarrollamos e implementamos puntos de venta adaptados a las necesidades de tu negocio.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pregunta 4 -->
+                <div class="faq-item glass-card rounded-2xl overflow-hidden">
+                    <button type="button" onclick="toggleFaq(this)"
+                            class="w-full px-6 py-4 text-left flex items-center justify-between gap-4 text-white font-semibold text-sm sm:text-base">
+                        <span>¿Ofrecen Asesoría Para Comprar Equipo Y Soporte Móvil?</span>
+                        <i class="fa-solid fa-chevron-down faq-chevron text-sky-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="pb-5 text-slate-400 text-sm leading-relaxed">
+                            Sí. Te asesoramos para elegir el equipo adecuado según tu presupuesto y uso real, además de atender cámaras CCTV analógicas/IP y eliminación de anuncios/virus o activación de líneas en teléfonos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         PIE DE PÁGINA
+         ========================================================================= -->
+    <footer class="bg-slate-950 border-t border-slate-800/80 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div>
+                <p class="text-white font-bold text-base">Ing. Arrezola — Ingeniería En Sistemas</p>
+                <p class="text-slate-500 text-xs mt-1">Tecomán, Colima, Caleras, Madrid, Armería Y Manzanillo</p>
+            </div>
+            <p class="text-slate-500 text-xs sm:text-sm">
+                &copy; <span id="current-year"></span> Ing. Arrezola. Todos Los Derechos Reservados.
+            </p>
+        </div>
+    </footer>
+
+    <!-- =========================================================================
+         BOTÓN FLOTANTE "SUBIR ARRIBA"
+         ========================================================================= -->
+    <button id="scroll-top-btn" type="button" onclick="scrollToTop()" aria-label="Subir Arriba"
+            class="fixed bottom-24 sm:bottom-28 right-6 sm:right-7 z-40 w-11 h-11 rounded-full bg-slate-900/95 hover:bg-sky-500 text-slate-200 hover:text-white border border-slate-700 hover:border-sky-400 shadow-xl flex items-center justify-center transition opacity-0 pointer-events-none">
+        <i class="fa-solid fa-arrow-up text-sm"></i>
+    </button>
+
+    <!-- =========================================================================
+         ÚNICO ÍCONO / BOTÓN FLOTANTE DE WHATSAPP (ESQUINA INFERIOR DERECHA)
+         ========================================================================= -->
+    <a id="floating-whatsapp-btn" href="#" target="_blank" rel="noopener noreferrer" aria-label="Contactar Por WhatsApp"
+       class="whatsapp-float fixed bottom-6 right-6 z-50 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white flex items-center justify-center shadow-2xl transition hover:scale-110">
+        <i class="fa-brands fa-whatsapp text-3xl sm:text-4xl"></i>
+    </a>
+
+    <!-- =========================================================================
+         MODAL LIGHTBOX PARA VER FOTOS CON TÍTULO, CATEGORÍA Y ALCANCE
+         ========================================================================= -->
+    <div id="lightbox-modal" onclick="closeLightbox()"
+         class="fixed inset-0 z-50 hidden bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4">
+        <div onclick="event.stopPropagation()"
+             class="relative max-w-3xl w-full bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden shadow-2xl">
+            <button type="button" onclick="closeLightbox()" aria-label="Cerrar Vista Ampliada"
+                    class="absolute top-3 right-3 z-10 w-10 h-10 rounded-full bg-slate-950/85 text-white hover:bg-rose-600 flex items-center justify-center text-xl transition">
+                &times;
+            </button>
+
+            <img id="lightbox-img" src="" alt="Vista Ampliada De Trabajo"
+                 class="w-full max-h-[62vh] object-contain bg-slate-950">
+
+            <div class="p-5 sm:p-6 bg-slate-900 border-t border-slate-800 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                    <span id="lightbox-cat" class="text-xs font-bold uppercase tracking-wider text-sky-400"></span>
+                    <button type="button" onclick="consultarDesdeLightbox()"
+                            class="px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs sm:text-sm font-semibold transition">
+                        Cotizar Trabajo Similar
+                    </button>
+                </div>
+                <h3 id="lightbox-title" class="text-white font-bold text-lg sm:text-xl"></h3>
+                <p id="lightbox-specs" class="text-slate-300 text-sm leading-relaxed"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================================
+         SCRIPT PRINCIPAL (EDITA AQUÍ TU NÚMERO DE WHATSAPP)
+         ========================================================================= -->
+    <script>
+        // Configura tu número de WhatsApp con código de país (sin signos + ni espacios)
+        const NUMERO_WHATSAPP = "523131181130";
+
+        let currentLightboxTitle = "";
+
+        /**
+         * Construye una URL de WhatsApp codificada con el mensaje deseado.
+         */
+        function buildWhatsAppUrl(message) {
+            const cleanNumber = String(NUMERO_WHATSAPP).replace(/\D/g, "");
+            return `https://wa.me/${cleanNumber}?text=${encodeURIComponent(message)}`;
+        }
+
+        /**
+         * Abre WhatsApp en una pestaña nueva con el mensaje indicado.
+         */
+        function openWhatsAppWithMessage(message) {
+            try {
+                const url = buildWhatsAppUrl(message);
+                window.open(url, "_blank", "noopener,noreferrer");
+            } catch (error) {
+                console.error("Error al abrir WhatsApp:", error);
+            }
+        }
+
+        /**
+         * Enlace discreto desde cada tarjeta de servicio.
+         */
+        function consultarServicio(serviceName, event) {
+            if (event) event.preventDefault();
+            const msg = `Hola Ing. Arrezola, me gustaría consultar información y cotización sobre: ${serviceName}.`;
+            openWhatsAppWithMessage(msg);
+        }
+
+        /**
+         * Cotiza un trabajo similar al mostrado en el lightbox.
+         */
+        function consultarDesdeLightbox() {
+            const detail = currentLightboxTitle ? ` (${currentLightboxTitle})` : "";
+            const msg = `Hola Ing. Arrezola, vi un trabajo en su galería${detail} y me gustaría cotizar algo similar.`;
+            openWhatsAppWithMessage(msg);
+        }
+
+        /**
+         * Sincroniza el selector de localidad con el campo de texto editable.
+         */
+        function syncLocationInput() {
+            const selectEl = document.getElementById("quote-location-select");
+            const inputEl = document.getElementById("quote-location");
+            if (!selectEl || !inputEl) return;
+
+            if (selectEl.value !== "Otra") {
+                inputEl.value = selectEl.value;
+            } else {
+                inputEl.value = "";
+                inputEl.focus();
+            }
+        }
+
+        /**
+         * Procesa el formulario del Cotizador Rápido y arma el mensaje para WhatsApp.
+         */
+        function enviarCotizacion(event) {
+            event.preventDefault();
+            try {
+                const nameInput = document.getElementById("quote-name");
+                const serviceSelect = document.getElementById("quote-service");
+                const locationSelect = document.getElementById("quote-location-select");
+                const locationInput = document.getElementById("quote-location");
+                const detailsInput = document.getElementById("quote-details");
+                const feedbackBox = document.getElementById("quote-feedback");
+
+                const nombre = nameInput ? nameInput.value.trim() : "";
+                const servicio = serviceSelect ? serviceSelect.value : "Solución En Sistemas";
+                const localidad = (locationInput && locationInput.value.trim())
+                    ? locationInput.value.trim()
+                    : (locationSelect ? locationSelect.value : "No especificada");
+                const detalles = detailsInput ? detailsInput.value.trim() : "";
+
+                if (!detalles) {
+                    if (feedbackBox) {
+                        feedbackBox.textContent = "Por favor escribe brevemente los detalles del problema o requerimiento antes de continuar.";
+                        feedbackBox.classList.remove("hidden");
+                    }
+                    return;
+                }
+
+                const lines = [
+                    "Hola Ing. Arrezola, me gustaría solicitar una cotización:",
+                    nombre ? `• Nombre: ${nombre}` : null,
+                    `• Servicio: ${servicio}`,
+                    `• Localidad: ${localidad}`,
+                    `• Detalles: ${detalles}`
+                ].filter(Boolean);
+
+                const finalMessage = lines.join("\n");
+
+                if (feedbackBox) {
+                    feedbackBox.textContent = "Mensaje preparado para WhatsApp. Si no se abrió automáticamente, utiliza el botón flotante de WhatsApp.";
+                    feedbackBox.classList.remove("hidden");
+                }
+
+                openWhatsAppWithMessage(finalMessage);
+            } catch (error) {
+                console.error("Error al generar la cotización:", error);
+            }
+        }
+
+        /**
+         * Alterna el menú móvil.
+         */
+        function toggleMobileMenu() {
+            const menu = document.getElementById("mobile-menu");
+            const icon = document.getElementById("mobile-menu-icon");
+            if (!menu || !icon) return;
+
+            const isHidden = menu.classList.contains("hidden");
+            if (isHidden) {
+                menu.classList.remove("hidden");
+                icon.classList.remove("fa-bars");
+                icon.classList.add("fa-xmark");
+            } else {
+                menu.classList.add("hidden");
+                icon.classList.remove("fa-xmark");
+                icon.classList.add("fa-bars");
+            }
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById("mobile-menu");
+            const icon = document.getElementById("mobile-menu-icon");
+            if (menu) menu.classList.add("hidden");
+            if (icon) {
+                icon.classList.remove("fa-xmark");
+                icon.classList.add("fa-bars");
+            }
+        }
+
+        /**
+         * Abre el modal lightbox con título, categoría y ficha técnica.
+         */
+        function openLightbox(card) {
+            try {
+                const img = card.querySelector("img");
+                const cat = card.getAttribute("data-cat-label") || "";
+                const title = card.getAttribute("data-title") || "";
+                const specs = card.getAttribute("data-specs") || "";
+
+                currentLightboxTitle = title;
+
+                document.getElementById("lightbox-img").src = img ? img.src : "";
+                document.getElementById("lightbox-img").alt = title || "Trabajo Realizado";
+                document.getElementById("lightbox-cat").textContent = cat;
+                document.getElementById("lightbox-title").textContent = title;
+                document.getElementById("lightbox-specs").textContent = specs;
+                document.getElementById("lightbox-modal").classList.remove("hidden");
+            } catch (error) {
+                console.error("Error al abrir la imagen ampliada:", error);
+            }
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById("lightbox-modal");
+            if (modal) modal.classList.add("hidden");
+        }
+
+        /**
+         * Abre o cierra preguntas frecuentes en acordeón.
+         */
+        function toggleFaq(buttonEl) {
+            const item = buttonEl.closest(".faq-item");
+            if (!item) return;
+            item.classList.toggle("open");
+        }
+
+        /**
+         * Desplaza suavemente hacia arriba.
+         */
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        /**
+         * Inicialización general al cargar el DOM.
+         */
+        document.addEventListener("DOMContentLoaded", () => {
+            try {
+                const yearEl = document.getElementById("current-year");
+                if (yearEl) {
+                    yearEl.textContent = new Date().getFullYear();
+                }
+
+                // Configurar el único botón flotante de WhatsApp
+                const floatingWa = document.getElementById("floating-whatsapp-btn");
+                if (floatingWa) {
+                    floatingWa.href = buildWhatsAppUrl("Hola Ing. Arrezola, vi su página de Ingeniería En Sistemas y requiero información.");
+                }
+
+                // Filtrado de galería
+                const filterButtons = document.querySelectorAll("#gallery-filters .filter-btn");
+                const galleryItems = document.querySelectorAll("#gallery-grid .gallery-item");
+
+                filterButtons.forEach((btn) => {
+                    btn.addEventListener("click", () => {
+                        filterButtons.forEach((b) => {
+                            b.classList.remove("bg-sky-500", "text-white");
+                            b.classList.add("bg-slate-800", "text-slate-300");
+                        });
+                        btn.classList.remove("bg-slate-800", "text-slate-300");
+                        btn.classList.add("bg-sky-500", "text-white");
+
+                        const filter = btn.getAttribute("data-filter");
+                        galleryItems.forEach((item) => {
+                            const category = item.getAttribute("data-category");
+                            if (filter === "all" || category === filter) {
+                                item.classList.remove("hidden");
+                            } else {
+                                item.classList.add("hidden");
+                            }
+                        });
+                    });
+                });
+
+                // Visibilidad del botón "Subir Arriba" al hacer scroll
+                const scrollTopBtn = document.getElementById("scroll-top-btn");
+                window.addEventListener("scroll", () => {
+                    if (!scrollTopBtn) return;
+                    if (window.scrollY > 360) {
+                        scrollTopBtn.classList.remove("opacity-0", "pointer-events-none");
+                        scrollTopBtn.classList.add("opacity-100");
+                    } else {
+                        scrollTopBtn.classList.add("opacity-0", "pointer-events-none");
+                        scrollTopBtn.classList.remove("opacity-100");
+                    }
+                });
+
+                // Cerrar lightbox con tecla Escape
+                document.addEventListener("keydown", (e) => {
+                    if (e.key === "Escape") {
+                        closeLightbox();
+                        closeMobileMenu();
+                    }
+                });
+            } catch (error) {
+                console.error("Error en la inicialización de la página:", error);
+            }
+        });
+    </script>
+</body>
+</html>
