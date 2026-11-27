@@ -86,6 +86,50 @@
         .faq-item.open .faq-chevron {
             transform: rotate(180deg);
         }
+
+        /* Animación del modal de envío de reseña: circulito girando -> palomita */
+        @keyframes spin-loader {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pop-check {
+            0% { transform: scale(0.45); opacity: 0; }
+            65% { transform: scale(1.12); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes draw-check {
+            to { stroke-dashoffset: 0; }
+        }
+
+        .review-spinner {
+            width: 68px;
+            height: 68px;
+            border-radius: 9999px;
+            border: 4px solid rgba(56, 189, 248, 0.2);
+            border-top-color: #38bdf8;
+            border-right-color: #10b981;
+            animation: spin-loader 0.85s linear infinite;
+        }
+
+        .review-check-badge {
+            width: 68px;
+            height: 68px;
+            border-radius: 9999px;
+            background: rgba(16, 185, 129, 0.16);
+            border: 3px solid #10b981;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pop-check 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            box-shadow: 0 0 28px rgba(16, 185, 129, 0.35);
+        }
+
+        .review-check-path {
+            stroke-dasharray: 42;
+            stroke-dashoffset: 42;
+            animation: draw-check 0.38s ease-out 0.14s forwards;
+        }
     </style>
 </head>
 <body id="top" class="antialiased selection:bg-sky-500 selection:text-white">
@@ -941,124 +985,198 @@
         </div>
     </section>
 
-   <!-- =========================================================================
-     SECCIÓN DE TESTIMONIOS ROTATIVOS Y FORMULARIO DE RESEÑAS
-     ========================================================================= -->
-<section id="testimonios" class="py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-12 flex flex-col items-center">
-            <span class="text-sky-400 font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3">Experiencias Reales</span>
-            <h2 class="text-3xl sm:text-4xl font-bold text-white text-center mb-4">Lo Que Dicen Nuestros Clientes</h2>
-            <p class="text-slate-400 text-center text-sm sm:text-base">
-                Las reseñas más recientes aparecen primero en un bloque rotativo de 3 tarjetas para mantener la página ágil.
-            </p>
-        </div>
+    <!-- =========================================================================
+         SECCIÓN DE TESTIMONIOS ROTATIVOS Y FORMULARIO DE RESEÑAS
+         ========================================================================= -->
+    <section id="testimonios" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10 flex flex-col items-center">
+                <span class="text-sky-400 font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3">Experiencias Reales</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white text-center mb-4">Lo Que Dicen Nuestros Clientes</h2>
+                <p class="text-slate-400 text-center text-sm sm:text-base">
+                    "Las opiniones más recientes de nuestros clientes, lo último que dicen quienes ya confían en nosotros"
+                </p>
 
-        <!-- Controles de rotación -->
-        <div class="flex items-center justify-between gap-4 mb-6">
-            <span id="review-page-indicator" class="text-xs sm:text-sm text-slate-400 font-medium"></span>
-            <div class="flex items-center gap-2">
-                <button type="button" id="prev-reviews-btn" onclick="rotarResenas(-1)" aria-label="Reseñas anteriores"
-                        class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-sky-500 text-slate-200 hover:text-white border border-slate-700 flex items-center justify-center transition">
-                    <i class="fa-solid fa-chevron-left text-xs"></i>
-                </button>
-                <button type="button" id="next-reviews-btn" onclick="rotarResenas(1)" aria-label="Siguientes reseñas"
-                        class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-sky-500 text-slate-200 hover:text-white border border-slate-700 flex items-center justify-center transition">
-                    <i class="fa-solid fa-chevron-right text-xs"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Contenedor de 3 tarjetas visibles -->
-        <div id="reviews-carousel" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10"></div>
-
-        <!-- Botón para desplegar formulario de nueva reseña -->
-        <div class="text-center mb-8">
-            <button type="button" onclick="toggleReviewForm()"
-                    class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-sky-500/40 text-sky-300 font-semibold text-sm transition inline-flex items-center gap-2">
-                <i class="fa-solid fa-pen-to-square"></i>
-                <span>Escribir Una Reseña</span>
-            </button>
-        </div>
-
-       <!-- Formulario para que el usuario deje su reseña -->
-<form id="new-review-form" onsubmit="agregarResena(event)"
-      class="hidden max-w-2xl mx-auto glass-card p-6 rounded-2xl space-y-4 mb-12">
-    <h3 class="text-white font-bold text-lg">Comparte Tu Experiencia</h3>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-            <label for="rev-name" class="block text-xs font-semibold text-slate-300 mb-1.5">Nombre O Negocio</label>
-            <input type="text" id="rev-name" required placeholder="Ej. Taller Mecánico López"
-                   class="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-700 text-white text-sm focus:outline-none focus:border-sky-400">
-        </div>
-        <div>
-            <label for="rev-location" class="block text-xs font-semibold text-slate-300 mb-1.5">Localidad</label>
-            <input type="text" id="rev-location" required placeholder="Ej. Tecomán, Colima"
-                   class="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-700 text-white text-sm focus:outline-none focus:border-sky-400">
-        </div>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-            <label for="rev-service" class="block text-xs font-semibold text-slate-300 mb-1.5">Servicio Realizado</label>
-            <input type="text" id="rev-service" placeholder="Ej. Cámaras CCTV, Armado PC, POS..."
-                   class="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-700 text-white text-sm focus:outline-none focus:border-sky-400">
-        </div>
-
-        <div>
-            <span class="block text-xs font-semibold text-slate-300 mb-1.5">Calificación (1 a 5 Estrellas)</span>
-            <div id="star-picker" class="flex items-center gap-2 py-2" role="radiogroup" aria-label="Calificación de 1 a 5 estrellas">
-                <button type="button" data-value="1" onclick="seleccionarEstrellas(1)" aria-label="1 estrella" class="star-btn text-xl text-amber-400 transition hover:scale-110"><i class="fa-solid fa-star"></i></button>
-                <button type="button" data-value="2" onclick="seleccionarEstrellas(2)" aria-label="2 estrellas" class="star-btn text-xl text-amber-400 transition hover:scale-110"><i class="fa-solid fa-star"></i></button>
-                <button type="button" data-value="3" onclick="seleccionarEstrellas(3)" aria-label="3 estrellas" class="star-btn text-xl text-amber-400 transition hover:scale-110"><i class="fa-solid fa-star"></i></button>
-                <button type="button" data-value="4" onclick="seleccionarEstrellas(4)" aria-label="4 estrellas" class="star-btn text-xl text-amber-400 transition hover:scale-110"><i class="fa-solid fa-star"></i></button>
-                <button type="button" data-value="5" onclick="seleccionarEstrellas(5)" aria-label="5 estrellas" class="star-btn text-xl text-amber-400 transition hover:scale-110"><i class="fa-solid fa-star"></i></button>
-                <span id="star-label" class="ml-2 text-xs text-slate-400 font-semibold">5 / 5</span>
-            </div>
-            <input type="hidden" id="rev-rating" value="5">
-        </div>
-    </div>
-
-    <div>
-        <label for="rev-comment" class="block text-xs font-semibold text-slate-300 mb-1.5">Comentario</label>
-        <textarea id="rev-comment" rows="3" required placeholder="Cuéntanos cómo quedó tu equipo, red, cámara o sistema..."
-                  class="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-700 text-white text-sm focus:outline-none focus:border-sky-400"></textarea>
-    </div>
-
-    <div id="review-feedback" class="hidden px-4 py-2.5 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 text-xs"></div>
-
-    <div class="flex justify-end gap-3">
-        <button type="button" onclick="toggleReviewForm()"
-                class="px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold hover:bg-slate-700 transition">
-            Cancelar
-        </button>
-        <button type="submit"
-                class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-emerald-600 text-white text-xs sm:text-sm font-bold transition">
-            Enviar Reseña
-        </button>
-    </div>
-</form>
-
-        <!-- Franja de Compromiso / Garantía -->
-        <div class="glass-card p-6 rounded-2xl border border-emerald-500/30 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-            <div class="flex flex-col sm:flex-row items-center gap-4">
-                <div class="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xl shrink-0">
-                    <i class="fa-solid fa-shield-halved"></i>
+                <!-- Promedio general de calificación y total de reseñas -->
+                <div id="rating-summary" class="mt-5 inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-slate-900/90 border border-slate-700/80 text-sm">
+                    <i class="fa-solid fa-star text-amber-400"></i>
+                    <span id="avg-rating-value" class="font-extrabold text-white">5.0</span>
+                    <span class="text-slate-600">•</span>
+                    <span id="total-reviews-label" class="text-slate-300 font-medium">3 reseñas</span>
                 </div>
+
+                <!-- Filtros rápidos de testimonios por servicio o estrellas -->
+                <div id="reviews-filters" class="flex flex-wrap items-center justify-center gap-2 mt-6">
+                    <button type="button" data-rev-filter="all" onclick="filtrarResenas('all')"
+                            class="rev-filter-btn px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-sky-500 text-white transition">
+                        Todas
+                    </button>
+                    <button type="button" data-rev-filter="cctv" onclick="filtrarResenas('cctv')"
+                            class="rev-filter-btn px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
+                        Cámaras / CCTV
+                    </button>
+                    <button type="button" data-rev-filter="redes" onclick="filtrarResenas('redes')"
+                            class="rev-filter-btn px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
+                        Redes / Wi-Fi
+                    </button>
+                    <button type="button" data-rev-filter="pc" onclick="filtrarResenas('pc')"
+                            class="rev-filter-btn px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
+                        PC / Cómputo
+                    </button>
+                    <button type="button" data-rev-filter="5stars" onclick="filtrarResenas('5stars')"
+                            class="rev-filter-btn px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition inline-flex items-center gap-1">
+                        <i class="fa-solid fa-star text-amber-400 text-xs"></i>
+                        <span>5 Estrellas</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Controles de rotación -->
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+                <span id="review-page-indicator" class="text-xs sm:text-sm text-slate-400 font-medium"></span>
+                <div class="flex items-center gap-2">
+                    <button type="button" id="toggle-autoplay-btn" onclick="toggleAutoplayResenas()" aria-label="Pausar o reanudar rotación automática"
+                            class="px-3 h-10 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-xs font-medium inline-flex items-center gap-1.5 transition">
+                        <i id="autoplay-icon" class="fa-solid fa-pause text-[11px] text-sky-400"></i>
+                        <span id="autoplay-text">Auto</span>
+                    </button>
+                    <button type="button" id="prev-reviews-btn" onclick="rotarResenas(-1, true)" aria-label="Reseñas anteriores"
+                            class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-sky-500 text-slate-200 hover:text-white border border-slate-700 flex items-center justify-center transition">
+                        <i class="fa-solid fa-chevron-left text-xs"></i>
+                    </button>
+                    <button type="button" id="next-reviews-btn" onclick="rotarResenas(1, true)" aria-label="Siguientes reseñas"
+                            class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-sky-500 text-slate-200 hover:text-white border border-slate-700 flex items-center justify-center transition">
+                        <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Contenedor de tarjetas visibles (se pausa al pasar cursor encima) -->
+            <div id="reviews-carousel"
+                 onmouseenter="pausarAutoplayTemporal(true)"
+                 onmouseleave="pausarAutoplayTemporal(false)"
+                 class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10"></div>
+
+            <!-- Botón para desplegar formulario de nueva reseña -->
+            <div class="text-center mb-8">
+                <button type="button" onclick="toggleReviewForm()"
+                        class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-sky-500/40 text-sky-300 font-semibold text-sm transition inline-flex items-center gap-2">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <span>Escribir Una Reseña</span>
+                </button>
+            </div>
+
+            <!-- Formulario para que el usuario deje su reseña -->
+            <form id="new-review-form" onsubmit="agregarResena(event)"
+                  class="hidden max-w-2xl mx-auto glass-card p-6 rounded-2xl space-y-4 mb-12 relative">
+                <h3 class="text-white font-bold text-lg">Comparte Tu Experiencia</h3>
+
+                <!-- Campo trampa anti-spam (honeypot invisible para humanos) -->
+                <div class="hidden" aria-hidden="true">
+                    <label for="rev-website">Sitio Web</label>
+                    <input type="text" id="rev-website" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="rev-name" class="block text-xs font-semibold text-slate-300 mb-1.5">Nombre O Negocio</label>
+                        <input type="text" id="rev-name" required placeholder="Ej. Taller Mecánico López"
+                               class="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-700 text-white text-sm focus:outline-none focus:border-sky-400">
+                    </div>
+                    <div>
+                        <label for="rev-location" class="block text-xs font-semibold text-slate-300 mb-1.5">Localidad</label>
+                        <input type="text" id="rev-location" required placeholder="Ej. Tecomán, Colima"
+                               onblur="aplicarAcentosLocalidad(this)"
+                               class="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-700 text-white text-sm focus:outline-none focus:border-sky-400">
+                        <p class="text-[11px] text-slate-400 mt-1"></p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="rev-service" class="block text-xs font-semibold text-slate-300 mb-1.5">Servicio Realizado</label>
+                        <select id="rev-service" onchange="toggleOtroServicioInput()"
+                                class="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-700 text-white text-sm focus:outline-none focus:border-sky-400">
+                            <option value="" selected>Selecciona un servicio...</option>
+                            <option value="Armado De PC">Armado De PC</option>
+                            <option value="Mantenimiento Preventivo Y Correctivo De Cómputo">Mantenimiento Preventivo Y Correctivo De Cómputo</option>
+                            <option value="Reparación (Hardware Y Software)">Reparación (Hardware Y Software)</option>
+                            <option value="Optimización De Sistemas">Optimización De Sistemas</option>
+                            <option value="Cámaras CCTV (Analógicas E IP)">Cámaras CCTV (Analógicas E IP)</option>
+                            <option value="Soporte Y Software Móvil">Soporte Y Software Móvil</option>
+                            <option value="Servidores Multimedia (DLNA)">Servidores Multimedia (DLNA)</option>
+                            <option value="Puntos De Venta (POS)">Puntos De Venta (POS)</option>
+                            <option value="Redes Wi-Fi Y Cableado Estructurado">Redes Wi-Fi Y Cableado Estructurado</option>
+                            <option value="Respaldo Y Recuperación De Datos">Respaldo Y Recuperación De Datos</option>
+                            <option value="Instalación De Software, Drivers Y Office">Instalación De Software, Drivers Y Office</option>
+                            <option value="Configuración De Impresoras Y Periféricos En Red">Configuración De Impresoras Y Periféricos En Red</option>
+                            <option value="Asesoría Y Cotización Para Compra De Equipo">Asesoría Y Cotización Para Compra De Equipo</option>
+                            <option value="Soporte Remoto">Soporte Remoto</option>
+                            <option value="Seguridad Digital Y Limpieza De Amenazas">Seguridad Digital Y Limpieza De Amenazas</option>
+                            <option value="Migración De Equipo Y Clonación De Disco">Migración De Equipo Y Clonación De Disco</option>
+                            <option value="Implementación Y Configuración De Dispositivos Streaming">Implementación Y Configuración De Dispositivos Streaming</option>
+                            <option value="Automatización E Iluminación Inteligente">Automatización E Iluminación Inteligente</option>
+                            <option value="Respaldo De Energía (Instalación Y Dimensionamiento De UPS / No-Break)">Respaldo De Energía (Instalación Y Dimensionamiento De UPS / No-Break)</option>
+                            <option value="Montaje Estructural Y Configuración De Pantallas">Montaje Estructural Y Configuración De Pantallas</option>
+                            <option value="Otro">Otro servicio...</option>
+                        </select>
+                        <input type="text" id="rev-service-custom" placeholder="Escribe el servicio realizado..."
+                               class="hidden mt-2 w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-700 text-white text-sm focus:outline-none focus:border-sky-400">
+                    </div>
+
+                    <div>
+                        <span class="block text-xs font-semibold text-slate-300 mb-1.5">Calificación (1 a 5 Estrellas)</span>
+                        <div id="star-picker" class="flex items-center gap-2 py-2" role="radiogroup" aria-label="Calificación de 1 a 5 estrellas">
+                            <button type="button" data-value="1" onclick="seleccionarEstrellas(1)" aria-label="1 estrella" class="star-btn text-xl text-amber-400 transition hover:scale-110"><i class="fa-solid fa-star"></i></button>
+                            <button type="button" data-value="2" onclick="seleccionarEstrellas(2)" aria-label="2 estrellas" class="star-btn text-xl text-amber-400 transition hover:scale-110"><i class="fa-solid fa-star"></i></button>
+                            <button type="button" data-value="3" onclick="seleccionarEstrellas(3)" aria-label="3 estrellas" class="star-btn text-xl text-amber-400 transition hover:scale-110"><i class="fa-solid fa-star"></i></button>
+                            <button type="button" data-value="4" onclick="seleccionarEstrellas(4)" aria-label="4 estrellas" class="star-btn text-xl text-amber-400 transition hover:scale-110"><i class="fa-solid fa-star"></i></button>
+                            <button type="button" data-value="5" onclick="seleccionarEstrellas(5)" aria-label="5 estrellas" class="star-btn text-xl text-amber-400 transition hover:scale-110"><i class="fa-solid fa-star"></i></button>
+                            <span id="star-label" class="ml-2 text-xs text-slate-400 font-semibold">5 / 5</span>
+                        </div>
+                        <input type="hidden" id="rev-rating" value="5">
+                    </div>
+                </div>
+
                 <div>
-                    <h3 class="text-white font-bold text-base">Garantía Y Entrega Probada En Cada Servicio</h3>
-                    <p class="text-slate-400 text-xs sm:text-sm mt-0.5">
-                        Respaldo de información antes de intervenir equipos, pruebas frente al cliente y garantía en mano de obra e instalaciones.
-                    </p>
+                    <label for="rev-comment" class="block text-xs font-semibold text-slate-300 mb-1.5">Comentario</label>
+                    <textarea id="rev-comment" rows="3" required placeholder="Cuéntanos cómo quedó tu equipo, red, cámara o sistema..."
+                              class="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-700 text-white text-sm focus:outline-none focus:border-sky-400"></textarea>
                 </div>
+
+                <div id="review-feedback" class="hidden px-4 py-2.5 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 text-xs"></div>
+
+                <div class="flex justify-end gap-3">
+                    <button type="button" onclick="toggleReviewForm()"
+                            class="px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold hover:bg-slate-700 transition">
+                        Cancelar
+                    </button>
+                    <button type="submit" id="submit-review-btn"
+                            class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-emerald-600 hover:from-sky-400 hover:to-emerald-500 disabled:opacity-60 disabled:cursor-not-allowed text-white text-xs sm:text-sm font-bold transition">
+                        Enviar Reseña
+                    </button>
+                </div>
+            </form>
+
+            <!-- Franja de Compromiso / Garantía -->
+            <div class="glass-card p-6 rounded-2xl border border-emerald-500/30 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+                <div class="flex flex-col sm:flex-row items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xl shrink-0">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-bold text-base">Garantía Y Entrega Probada En Cada Servicio</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm mt-0.5">
+                            Respaldo de información antes de intervenir equipos, pruebas frente al cliente y garantía en mano de obra e instalaciones.
+                        </p>
+                    </div>
+                </div>
+                <a href="#cotizador" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs sm:text-sm whitespace-nowrap transition">
+                    Solicitar Diagnóstico
+                </a>
             </div>
-            <a href="#cotizador" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs sm:text-sm whitespace-nowrap transition">
-                Solicitar Diagnóstico
-            </a>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- =========================================================================
          COBERTURA Y HORARIOS
@@ -1113,7 +1231,7 @@
                     </div>
 
                     <ul class="space-y-3.5 text-sm text-slate-300">
-                                                <li class="flex items-center justify-between py-2 border-b border-slate-800/80">
+                        <li class="flex items-center justify-between py-2 border-b border-slate-800/80">
                             <span class="font-semibold text-white">Sábados</span>
                             <span class="text-sky-400 font-medium">8:00 AM - 6:00 PM</span>
                         </li>
@@ -1197,6 +1315,7 @@
                     <div>
                         <label for="quote-location" class="block text-sm font-semibold text-white mb-2">Especificar Localidad O Colonia</label>
                         <input type="text" id="quote-location" value="Tecomán" placeholder="Ej. Tecomán, Colima, Caleras, Madrid, Armería, Manzanillo..."
+                               onblur="aplicarAcentosLocalidad(this)"
                                class="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 transition">
                     </div>
                 </div>
@@ -1353,14 +1472,29 @@
     </section>
 
     <!-- =========================================================================
-         PIE DE PÁGINA
+         PIE DE PÁGINA CON BOTONES DIRECTOS PARA COMPARTIR
          ========================================================================= -->
     <footer class="bg-slate-950 border-t border-slate-800/80 py-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
             <div>
                 <p class="text-white font-bold text-base">Ing. Arrezola — Ingeniería En Sistemas</p>
                 <p class="text-slate-500 text-xs mt-1">Tecomán, Colima, Caleras, Madrid, Armería Y Manzanillo</p>
             </div>
+
+            <!-- Botones para compartir la página -->
+            <div class="flex flex-wrap items-center justify-center gap-2.5">
+                <button type="button" id="copy-link-btn" onclick="copiarEnlacePagina()"
+                        class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 text-xs font-semibold inline-flex items-center gap-2 transition">
+                    <i class="fa-solid fa-link text-sky-400"></i>
+                    <span id="copy-link-text">Copiar Enlace</span>
+                </button>
+                <button type="button" onclick="compartirPaginaWhatsApp()"
+                        class="px-4 py-2 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/40 text-emerald-300 text-xs font-semibold inline-flex items-center gap-2 transition">
+                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                    <span>Compartir Por WhatsApp</span>
+                </button>
+            </div>
+
             <p class="text-slate-500 text-xs sm:text-sm">
                 © <span id="current-year"></span> Ing. Arrezola. Todos Los Derechos Reservados.
             </p>
@@ -1382,6 +1516,34 @@
        class="whatsapp-float fixed bottom-6 right-6 z-50 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white flex items-center justify-center shadow-2xl transition hover:scale-110">
         <i class="fa-brands fa-whatsapp text-3xl sm:text-4xl"></i>
     </a>
+
+    <!-- =========================================================================
+         MODAL FLOTANTE ANIMADO AL ENVIAR RESEÑA (CÍRCULO GIRANDO -> PALOMITA)
+         ========================================================================= -->
+    <div id="review-status-modal"
+         class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-700/90 rounded-2xl p-7 max-w-sm w-full text-center shadow-2xl flex flex-col items-center">
+            <!-- Estado 1: Circulito dando vueltas -->
+            <div id="review-modal-loading" class="flex flex-col items-center">
+                <div class="review-spinner mb-4"></div>
+                <h4 class="text-white font-bold text-lg">Enviando reseña...</h4>
+                <p class="text-slate-400 text-xs mt-1">Registrando tu experiencia de forma segura</p>
+            </div>
+
+            <!-- Estado 2: Palomita confirmando que ya se mandó -->
+            <div id="review-modal-success" class="hidden flex-col items-center">
+                <div class="review-check-badge mb-4">
+                    <svg class="w-9 h-9 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <path class="review-check-path" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <h4 class="text-white font-bold text-lg">¡Reseña enviada!</h4>
+                <p class="text-slate-300 text-xs mt-1.5 leading-relaxed">
+                    Gracias por compartir tu experiencia. Se publicará en cuanto sea revisada.
+                </p>
+            </div>
+        </div>
+    </div>
 
     <!-- =========================================================================
          MODAL LIGHTBOX PARA VER FOTOS CON TÍTULO, CATEGORÍA Y ALCANCE
@@ -1415,414 +1577,737 @@
     <!-- =========================================================================
          SCRIPT PRINCIPAL
          ========================================================================= -->
-   <script>
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw3an-kUfuGYVLAowWZByqGze8JNR4Src4NwL9n9zJJmeAGu-las-cJ3DbAaujw53_/exec";
-const RESENAS_INICIALES = [
-    {
-        nombre: "Cliente De Armado Y Optimización",
-        ubicacion: "Tecomán, Colima",
-        servicio: "Armado De PC",
-        estrellas: 5,
-        comentario: "Me armó mi PC desde cero y dejó todo súper limpio y rápido. Me explicó qué piezas convenían más sin hacerme gastar de más."
-    },
-    {
-        nombre: "Comercio Local",
-        ubicacion: "Armería, Colima",
-        servicio: "CCTV Y POS",
-        estrellas: 5,
-        comentario: "Instaló las cámaras de mi negocio y configuró el punto de venta con su impresora de tickets. Todo quedó funcionando el mismo día y lo puedo ver desde mi celular."
-    },
-    {
-        nombre: "Servicio Residencial",
-        ubicacion: "Manzanillo, Colima",
-        servicio: "Red Y Pantallas",
-        estrellas: 5,
-        comentario: "Mejoró la señal Wi-Fi de la casa, montó la pantalla en la pared sin cables visibles y dejó configurado el streaming. Muy puntual y ordenado."
-    }
-];
+    <script>
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw3an-kUfuGYVLAowWZByqGze8JNR4Src4NwL9n9zJJmeAGu-las-cJ3DbAaujw53_/exec";
+        const RESENAS_INICIALES = [
+            {
+                nombre: "Cliente De Armado Y Optimización",
+                ubicacion: "Tecomán, Colima",
+                servicio: "Armado De PC",
+                estrellas: 5,
+                comentario: "Me armó mi PC desde cero y dejó todo súper limpio y rápido. Me explicó qué piezas convenían más sin hacerme gastar de más."
+            },
+            {
+                nombre: "Comercio Local",
+                ubicacion: "Armería, Colima",
+                servicio: "CCTV Y POS",
+                estrellas: 5,
+                comentario: "Instaló las cámaras de mi negocio y configuró el punto de venta con su impresora de tickets. Todo quedó funcionando el mismo día y lo puedo ver desde mi celular."
+            },
+            {
+                nombre: "Servicio Residencial",
+                ubicacion: "Manzanillo, Colima",
+                servicio: "Red Y Pantallas",
+                estrellas: 5,
+                comentario: "Mejoró la señal Wi-Fi de la casa, montó la pantalla en la pared sin cables visibles y dejó configurado el streaming. Muy puntual y ordenado."
+            }
+        ];
 
-let listaResenas = [...RESENAS_INICIALES];
-let inicioCarrusel = 0;
+        const ACENTOS_LOCALIDAD = {
+            "tecoman": "Tecomán",
+            "tecomán": "Tecomán",
+            "armeria": "Armería",
+            "armería": "Armería",
+            "coquimatlan": "Coquimatlán",
+            "coquimatlán": "Coquimatlán",
+            "cuauhtemoc": "Cuauhtémoc",
+            "cuauhtémoc": "Cuauhtémoc",
+            "ixtlahuacan": "Ixtlahuacán",
+            "ixtlahuacán": "Ixtlahuacán",
+            "minatitlan": "Minatitlán",
+            "minatitlán": "Minatitlán",
+            "villa de alvarez": "Villa de Álvarez",
+            "villa de álvarez": "Villa de Álvarez",
+            "mexico": "México",
+            "méxico": "México",
+            "leon": "León",
+            "león": "León",
+            "merida": "Mérida",
+            "mérida": "Mérida",
+            "queretaro": "Querétaro",
+            "querétaro": "Querétaro",
+            "san luis potosi": "San Luis Potosí",
+            "san luis potosí": "San Luis Potosí"
+        };
 
-function escaparTexto(texto) {
-    const div = document.createElement("div");
-    div.textContent = texto == null ? "" : String(texto);
-    return div.innerHTML;
-}
+        let listaResenas = [...RESENAS_INICIALES];
+        let filtroResenaActual = "all";
+        let inicioCarrusel = 0;
 
-function seleccionarEstrellas(valor) {
-    const ratingInput = document.getElementById("rev-rating");
-    const labelEl = document.getElementById("star-label");
-    const buttons = document.querySelectorAll("#star-picker .star-btn");
+        // Estado del avance automático del carrusel
+        let autoplayActivo = true;
+        let autoplayHoverPausado = false;
+        let autoplayTimer = null;
 
-    if (ratingInput) ratingInput.value = valor;
-    if (labelEl) labelEl.textContent = `${valor} / 5`;
-
-    buttons.forEach((btn) => {
-        const v = Number(btn.getAttribute("data-value"));
-        const icon = btn.querySelector("i");
-        if (v <= valor) {
-            btn.classList.remove("text-slate-600");
-            btn.classList.add("text-amber-400");
-            if (icon) icon.className = "fa-solid fa-star";
-        } else {
-            btn.classList.remove("text-amber-400");
-            btn.classList.add("text-slate-600");
-            if (icon) icon.className = "fa-regular fa-star";
+        function escaparTexto(texto) {
+            const div = document.createElement("div");
+            div.textContent = texto == null ? "" : String(texto);
+            return div.innerHTML;
         }
-    });
-}
 
-function renderizarResenas() {
-    const contenedor = document.getElementById("reviews-carousel");
-    const indicador = document.getElementById("review-page-indicator");
-    if (!contenedor) return;
+        function formatearLocalidad(valor) {
+            const limpio = String(valor || "").replace(/\s+/g, " ").trim();
+            if (!limpio) return "";
 
-    const total = listaResenas.length;
-    if (total === 0) return;
+            const claveCompleta = limpio.toLowerCase();
+            if (ACENTOS_LOCALIDAD[claveCompleta]) {
+                return ACENTOS_LOCALIDAD[claveCompleta];
+            }
 
-    inicioCarrusel = ((inicioCarrusel % total) + total) % total;
-    const visibles = Math.min(3, total);
-    let html = "";
+            const conectores = new Set(["de", "del", "la", "las", "el", "los", "y", "e", "o", "u", "en", "a"]);
 
-    for (let i = 0; i < visibles; i++) {
-        const item = listaResenas[(inicioCarrusel + i) % total];
-        const estrellasHtml = Array.from({ length: Math.min(5, Math.max(1, Number(item.estrellas) || 5)) })
-            .map(() => '<i class="fa-solid fa-star"></i>')
-            .join("");
+            return limpio
+                .split(",")
+                .map((parte) => {
+                    const p = parte.trim().toLowerCase();
+                    if (!p) return "";
+                    if (ACENTOS_LOCALIDAD[p]) return ACENTOS_LOCALIDAD[p];
 
-        html += `
-            <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center justify-between gap-2 mb-4">
-                        <div class="flex items-center gap-1 text-amber-400 text-sm">${estrellasHtml}</div>
-                        ${item.servicio ? `<span class="text-[11px] px-2.5 py-1 rounded-full bg-sky-500/10 border border-sky-500/25 text-sky-300 font-semibold">${escaparTexto(item.servicio)}</span>` : ""}
-                    </div>
-                    <p class="text-slate-300 text-sm leading-relaxed mb-5">
-                        "${escaparTexto(item.comentario)}"
-                    </p>
-                </div>
-                <div class="border-t border-slate-800 pt-3">
-                    <p class="text-white font-bold text-sm">${escaparTexto(item.nombre)}</p>
-                    <p class="text-emerald-400 text-xs">${escaparTexto(item.ubicacion)}</p>
-                </div>
-            </div>
-        `;
-    }
+                    return p
+                        .split(" ")
+                        .map((palabra, idx) => {
+                            if (ACENTOS_LOCALIDAD[palabra]) return ACENTOS_LOCALIDAD[palabra];
+                            if (idx > 0 && conectores.has(palabra)) return palabra;
+                            return palabra.charAt(0).toUpperCase() + palabra.slice(1);
+                        })
+                        .join(" ");
+                })
+                .filter(Boolean)
+                .join(", ");
+        }
 
-    contenedor.innerHTML = html;
-    if (indicador) {
-        indicador.textContent = `Mostrando ${visibles} de ${total} reseñas (las más recientes primero)`;
-    }
-}
+        function aplicarAcentosLocalidad(inputEl) {
+            if (!inputEl) return;
+            const formateado = formatearLocalidad(inputEl.value);
+            if (formateado) {
+                inputEl.value = formateado;
+            }
+        }
 
-function rotarResenas(paso) {
-    inicioCarrusel += paso;
-    renderizarResenas();
-}
+        function toggleOtroServicioInput() {
+            const selectEl = document.getElementById("rev-service");
+            const customEl = document.getElementById("rev-service-custom");
+            if (!selectEl || !customEl) return;
 
-function toggleReviewForm() {
-    const form = document.getElementById("new-review-form");
-    if (!form) return;
-    form.classList.toggle("hidden");
-    if (!form.classList.contains("hidden")) {
-        form.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }
-}
+            if (selectEl.value === "Otro") {
+                customEl.classList.remove("hidden");
+                customEl.required = true;
+                customEl.focus();
+            } else {
+                customEl.classList.add("hidden");
+                customEl.required = false;
+                customEl.value = "";
+            }
+        }
 
-async function cargarResenasDesdeSheet() {
-    renderizarResenas();
-    if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.startsWith("PEGA_AQUI")) return;
+        function obtenerResenasFiltradas() {
+            if (filtroResenaActual === "all") return listaResenas;
 
-    try {
-        const resp = await fetch(GOOGLE_SCRIPT_URL);
-        const data = await resp.json();
-        if (data && data.ok && Array.isArray(data.resenas) && data.resenas.length > 0) {
-            listaResenas = [...data.resenas, ...RESENAS_INICIALES];
+            return listaResenas.filter((item) => {
+                const srv = String(item.servicio || "").toLowerCase();
+                const stars = Number(item.estrellas) || 5;
+
+                if (filtroResenaActual === "5stars") return stars === 5;
+                if (filtroResenaActual === "cctv") {
+                    return srv.includes("cámara") || srv.includes("camara") || srv.includes("cctv");
+                }
+                if (filtroResenaActual === "redes") {
+                    return srv.includes("red") || srv.includes("wi-fi") || srv.includes("wifi") || srv.includes("dlna");
+                }
+                if (filtroResenaActual === "pc") {
+                    return srv.includes("pc") || srv.includes("cómputo") || srv.includes("computo") ||
+                           srv.includes("reparación") || srv.includes("reparacion") ||
+                           srv.includes("mantenimiento") || srv.includes("optimización") ||
+                           srv.includes("optimizacion") || srv.includes("soporte") || srv.includes("clonación");
+                }
+                return true;
+            });
+        }
+
+        function filtrarResenas(filtro) {
+            filtroResenaActual = filtro;
             inicioCarrusel = 0;
+
+            document.querySelectorAll("#reviews-filters .rev-filter-btn").forEach((btn) => {
+                const f = btn.getAttribute("data-rev-filter");
+                if (f === filtro) {
+                    btn.classList.remove("bg-slate-800", "text-slate-300");
+                    btn.classList.add("bg-sky-500", "text-white");
+                } else {
+                    btn.classList.remove("bg-sky-500", "text-white");
+                    btn.classList.add("bg-slate-800", "text-slate-300");
+                }
+            });
+
             renderizarResenas();
         }
-    } catch (err) {
-        console.error("No se pudieron cargar las reseñas desde Google Sheets:", err);
-    }
-}
 
-async function agregarResena(event) {
-    event.preventDefault();
-    const nombreEl = document.getElementById("rev-name");
-    const ubicacionEl = document.getElementById("rev-location");
-    const servicioEl = document.getElementById("rev-service");
-    const ratingEl = document.getElementById("rev-rating");
-    const comentarioEl = document.getElementById("rev-comment");
-    const feedback = document.getElementById("review-feedback");
+        function actualizarResumenCalificacion() {
+            const avgEl = document.getElementById("avg-rating-value");
+            const totalEl = document.getElementById("total-reviews-label");
+            if (!avgEl || !totalEl) return;
 
-    const nombre = nombreEl ? nombreEl.value.trim() : "";
-    const ubicacion = ubicacionEl ? ubicacionEl.value.trim() : "";
-    const servicio = servicioEl ? servicioEl.value.trim() : "";
-    const estrellas = Number(ratingEl ? ratingEl.value : 5) || 5;
-    const comentario = comentarioEl ? comentarioEl.value.trim() : "";
-
-    if (!nombre || !ubicacion || !comentario) return;
-
-    if (GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.startsWith("PEGA_AQUI")) {
-        try {
-            await fetch(GOOGLE_SCRIPT_URL, {
-                method: "POST",
-                mode: "no-cors",
-                headers: { "Content-Type": "text/plain;charset=utf-8" },
-                body: JSON.stringify({ nombre, ubicacion, servicio, estrellas, comentario })
-            });
-        } catch (err) {
-            console.error("Error al enviar reseña:", err);
-        }
-    }
-
-    event.target.reset();
-    seleccionarEstrellas(5);
-
-    if (feedback) {
-        feedback.textContent = "¡Gracias por tu reseña! Se envió correctamente y aparecerá publicada en cuanto sea revisada.";
-        feedback.classList.remove("hidden");
-    }
-}
-
-const NUMERO_WHATSAPP = "523131181130";
-
-let currentLightboxTitle = "";
-
-function buildWhatsAppUrl(message) {
-    const cleanNumber = String(NUMERO_WHATSAPP).replace(/\D/g, "");
-    return `https://wa.me/${cleanNumber}?text=${encodeURIComponent(message)}`;
-}
-
-function openWhatsAppWithMessage(message) {
-    try {
-        const url = buildWhatsAppUrl(message);
-        window.open(url, "_blank", "noopener,noreferrer");
-    } catch (error) {
-        console.error("Error al abrir WhatsApp:", error);
-    }
-}
-
-function consultarServicio(serviceName, event) {
-    if (event) event.preventDefault();
-    const msg = `Hola Ing. Arrezola, me gustaría consultar información y cotización sobre: ${serviceName}.`;
-    openWhatsAppWithMessage(msg);
-}
-
-function consultarDesdeLightbox() {
-    const detail = currentLightboxTitle ? ` (${currentLightboxTitle})` : "";
-    const msg = `Hola Ing. Arrezola, vi un trabajo en su galería${detail} y me gustaría cotizar algo similar.`;
-    openWhatsAppWithMessage(msg);
-}
-
-function syncLocationInput() {
-    const selectEl = document.getElementById("quote-location-select");
-    const inputEl = document.getElementById("quote-location");
-    if (!selectEl || !inputEl) return;
-
-    if (selectEl.value !== "Otra") {
-        inputEl.value = selectEl.value;
-    } else {
-        inputEl.value = "";
-        inputEl.focus();
-    }
-}
-
-function enviarCotizacion(event) {
-    event.preventDefault();
-    try {
-        const nameInput = document.getElementById("quote-name");
-        const serviceSelect = document.getElementById("quote-service");
-        const locationSelect = document.getElementById("quote-location-select");
-        const locationInput = document.getElementById("quote-location");
-        const detailsInput = document.getElementById("quote-details");
-        const feedbackBox = document.getElementById("quote-feedback");
-
-        const nombre = nameInput ? nameInput.value.trim() : "";
-        const servicio = serviceSelect ? serviceSelect.value : "Solución En Sistemas";
-        const localidad = (locationInput && locationInput.value.trim())
-            ? locationInput.value.trim()
-            : (locationSelect ? locationSelect.value : "No especificada");
-        const detalles = detailsInput ? detailsInput.value.trim() : "";
-
-        if (!detalles) {
-            if (feedbackBox) {
-                feedbackBox.textContent = "Por favor escribe brevemente los detalles del problema o requerimiento antes de continuar.";
-                feedbackBox.classList.remove("hidden");
+            const total = listaResenas.length;
+            if (total === 0) {
+                avgEl.textContent = "0.0";
+                totalEl.textContent = "0 reseñas";
+                return;
             }
-            return;
+
+            const suma = listaResenas.reduce((acc, r) => {
+                const n = Number(r.estrellas);
+                return acc + (Number.isFinite(n) && n >= 1 && n <= 5 ? n : 5);
+            }, 0);
+
+            avgEl.textContent = (suma / total).toFixed(1);
+            totalEl.textContent = `${total} ${total === 1 ? "reseña" : "reseñas"}`;
         }
 
-        const lines = [
-            "Hola Ing. Arrezola, me gustaría solicitar una cotización:",
-            nombre ? `• Nombre: ${nombre}` : null,
-            `• Servicio: ${servicio}`,
-            `• Localidad: ${localidad}`,
-            `• Detalles: ${detalles}`
-        ].filter(Boolean);
+        function seleccionarEstrellas(valor) {
+            const ratingInput = document.getElementById("rev-rating");
+            const labelEl = document.getElementById("star-label");
+            const buttons = document.querySelectorAll("#star-picker .star-btn");
 
-        const finalMessage = lines.join("\n");
+            if (ratingInput) ratingInput.value = valor;
+            if (labelEl) labelEl.textContent = `${valor} / 5`;
 
-        if (feedbackBox) {
-            feedbackBox.textContent = "Mensaje preparado para WhatsApp. Si no se abrió automáticamente, utiliza el botón flotante de WhatsApp.";
-            feedbackBox.classList.remove("hidden");
-        }
-
-        openWhatsAppWithMessage(finalMessage);
-    } catch (error) {
-        console.error("Error al generar la cotización:", error);
-    }
-}
-
-function toggleMobileMenu() {
-    const menu = document.getElementById("mobile-menu");
-    const icon = document.getElementById("mobile-menu-icon");
-    if (!menu || !icon) return;
-
-    const isHidden = menu.classList.contains("hidden");
-    if (isHidden) {
-        menu.classList.remove("hidden");
-        icon.classList.remove("fa-bars");
-        icon.classList.add("fa-xmark");
-    } else {
-        menu.classList.add("hidden");
-        icon.classList.remove("fa-xmark");
-        icon.classList.add("fa-bars");
-    }
-}
-
-function closeMobileMenu() {
-    const menu = document.getElementById("mobile-menu");
-    const icon = document.getElementById("mobile-menu-icon");
-    if (menu) menu.classList.add("hidden");
-    if (icon) {
-        icon.classList.remove("fa-xmark");
-        icon.classList.add("fa-bars");
-    }
-}
-
-function openLightbox(card) {
-    try {
-        const img = card.querySelector("img");
-        const cat = card.getAttribute("data-cat-label") || "";
-        const title = card.getAttribute("data-title") || "";
-        const specs = card.getAttribute("data-specs") || "";
-
-        currentLightboxTitle = title;
-
-        document.getElementById("lightbox-img").src = img ? img.src : "";
-        document.getElementById("lightbox-img").alt = title || "Trabajo Realizado";
-        document.getElementById("lightbox-cat").textContent = cat;
-        document.getElementById("lightbox-title").textContent = title;
-        document.getElementById("lightbox-specs").textContent = specs;
-        document.getElementById("lightbox-modal").classList.remove("hidden");
-    } catch (error) {
-        console.error("Error al abrir la imagen ampliada:", error);
-    }
-}
-
-function closeLightbox() {
-    const modal = document.getElementById("lightbox-modal");
-    if (modal) modal.classList.add("hidden");
-}
-
-function toggleFaq(buttonEl) {
-    const item = buttonEl.closest(".faq-item");
-    if (!item) return;
-    item.classList.toggle("open");
-}
-
-function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    try {
-        const yearEl = document.getElementById("current-year");
-        if (yearEl) {
-            yearEl.textContent = new Date().getFullYear();
-        }
-
-        cargarResenasDesdeSheet();
-
-        const floatingWa = document.getElementById("floating-whatsapp-btn");
-        if (floatingWa) {
-            floatingWa.href = buildWhatsAppUrl("Hola Ing. Arrezola, vi su página de Ingeniería En Sistemas y requiero información.");
-        }
-
-        // Filtros para la sección Nuestros Servicios
-        const serviceFilterBtns = document.querySelectorAll("#services-filters .srv-filter-btn");
-        const serviceCards = document.querySelectorAll("#services-grid article");
-
-        serviceFilterBtns.forEach((btn) => {
-            btn.addEventListener("click", () => {
-                serviceFilterBtns.forEach((b) => {
-                    b.classList.remove("bg-sky-500", "text-white");
-                    b.classList.add("bg-slate-800", "text-slate-300");
-                });
-                btn.classList.remove("bg-slate-800", "text-slate-300");
-                btn.classList.add("bg-sky-500", "text-white");
-
-                const filter = btn.getAttribute("data-service-filter");
-                serviceCards.forEach((card) => {
-                    const cat = card.getAttribute("data-srv-cat");
-                    if (filter === "all" || cat === filter) {
-                        card.classList.remove("hidden");
-                    } else {
-                        card.classList.add("hidden");
-                    }
-                });
+            buttons.forEach((btn) => {
+                const v = Number(btn.getAttribute("data-value"));
+                const icon = btn.querySelector("i");
+                if (v <= valor) {
+                    btn.classList.remove("text-slate-600");
+                    btn.classList.add("text-amber-400");
+                    if (icon) icon.className = "fa-solid fa-star";
+                } else {
+                    btn.classList.remove("text-amber-400");
+                    btn.classList.add("text-slate-600");
+                    if (icon) icon.className = "fa-regular fa-star";
+                }
             });
-        });
+        }
 
-        // Filtros para la Galería De Trabajos Realizados
-        const filterButtons = document.querySelectorAll("#gallery-filters .filter-btn");
-        const galleryItems = document.querySelectorAll("#gallery-grid .gallery-item");
+        function renderizarResenas() {
+            actualizarResumenCalificacion();
 
-        filterButtons.forEach((btn) => {
-            btn.addEventListener("click", () => {
-                filterButtons.forEach((b) => {
-                    b.classList.remove("bg-sky-500", "text-white");
-                    b.classList.add("bg-slate-800", "text-slate-300");
-                });
-                btn.classList.remove("bg-slate-800", "text-slate-300");
-                btn.classList.add("bg-sky-500", "text-white");
+            const contenedor = document.getElementById("reviews-carousel");
+            const indicador = document.getElementById("review-page-indicator");
+            if (!contenedor) return;
 
-                const filter = btn.getAttribute("data-filter");
-                galleryItems.forEach((item) => {
-                    const category = item.getAttribute("data-category");
-                    if (filter === "all" || category === filter) {
-                        item.classList.remove("hidden");
-                    } else {
-                        item.classList.add("hidden");
-                    }
-                });
-            });
-        });
+            const filtradas = obtenerResenasFiltradas();
+            const total = filtradas.length;
 
-        const scrollTopBtn = document.getElementById("scroll-top-btn");
-        window.addEventListener("scroll", () => {
-            if (!scrollTopBtn) return;
-            if (window.scrollY > 360) {
-                scrollTopBtn.classList.remove("opacity-0", "pointer-events-none");
-                scrollTopBtn.classList.add("opacity-100");
+            if (total === 0) {
+                contenedor.innerHTML = `
+                    <div class="md:col-span-3 glass-card p-8 rounded-2xl text-center text-slate-400 text-sm">
+                        Aún no hay reseñas aprobadas en esta categoría. ¡Sé el primero en compartir tu experiencia!
+                    </div>
+                `;
+                if (indicador) indicador.textContent = "0 reseñas en este filtro";
+                return;
+            }
+
+            inicioCarrusel = ((inicioCarrusel % total) + total) % total;
+            const visibles = Math.min(3, total);
+            let html = "";
+
+            for (let i = 0; i < visibles; i++) {
+                const item = filtradas[(inicioCarrusel + i) % total];
+                const estrellasHtml = Array.from({ length: Math.min(5, Math.max(1, Number(item.estrellas) || 5)) })
+                    .map(() => '<i class="fa-solid fa-star"></i>')
+                    .join("");
+
+                const localidadLimpia = formatearLocalidad(item.ubicacion);
+
+                html += `
+                    <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-4">
+                                <div class="flex items-center gap-1 text-amber-400 text-sm">${estrellasHtml}</div>
+                                ${item.servicio ? `<span class="text-[11px] px-2.5 py-1 rounded-full bg-sky-500/10 border border-sky-500/25 text-sky-300 font-semibold">${escaparTexto(item.servicio)}</span>` : ""}
+                            </div>
+                            <p class="text-slate-300 text-sm leading-relaxed mb-5">
+                                "${escaparTexto(item.comentario)}"
+                            </p>
+                        </div>
+                        <div class="border-t border-slate-800 pt-3">
+                            <p class="text-white font-bold text-sm">${escaparTexto(item.nombre)}</p>
+                            <p class="text-emerald-400 text-xs">${escaparTexto(localidadLimpia)}</p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            contenedor.innerHTML = html;
+            if (indicador) {
+                indicador.textContent = `Mostrando ${visibles} de ${total} reseñas${filtroResenaActual === "all" ? " (las más recientes primero)" : " filtradas"}`;
+            }
+        }
+
+        function rotarResenas(paso, interaccionManual = false) {
+            inicioCarrusel += paso;
+            renderizarResenas();
+
+            // Si el usuario usa las flechas manualmente, reiniciamos el temporizador o pausamos brevemente
+            if (interaccionManual && autoplayActivo) {
+                reiniciarAutoplay();
+            }
+        }
+
+        function actualizarBotonAutoplay() {
+            const icon = document.getElementById("autoplay-icon");
+            const text = document.getElementById("autoplay-text");
+            if (!icon || !text) return;
+
+            if (autoplayActivo) {
+                icon.className = "fa-solid fa-pause text-[11px] text-sky-400";
+                text.textContent = "Auto";
             } else {
-                scrollTopBtn.classList.add("opacity-0", "pointer-events-none");
-                scrollTopBtn.classList.remove("opacity-100");
+                icon.className = "fa-solid fa-play text-[11px] text-slate-400";
+                text.textContent = "Pausado";
             }
-        });
+        }
 
-        document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape") {
-                closeLightbox();
-                closeMobileMenu();
+        function iniciarAutoplay() {
+            if (autoplayTimer) clearInterval(autoplayTimer);
+            autoplayTimer = setInterval(() => {
+                if (!autoplayActivo || autoplayHoverPausado) return;
+                const filtradas = obtenerResenasFiltradas();
+                if (filtradas.length > 3) {
+                    rotarResenas(1, false);
+                }
+            }, 10000);
+        }
+
+        function reiniciarAutoplay() {
+            iniciarAutoplay();
+        }
+
+        function toggleAutoplayResenas() {
+            autoplayActivo = !autoplayActivo;
+            actualizarBotonAutoplay();
+            if (autoplayActivo) {
+                iniciarAutoplay();
+            } else if (autoplayTimer) {
+                clearInterval(autoplayTimer);
+            }
+        }
+
+        function pausarAutoplayTemporal(pausar) {
+            autoplayHoverPausado = pausar;
+        }
+
+        function toggleReviewForm() {
+            const form = document.getElementById("new-review-form");
+            if (!form) return;
+            form.classList.toggle("hidden");
+            if (!form.classList.contains("hidden")) {
+                form.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }
+        }
+
+        function mostrarModalEstadoResena(estado) {
+            const modal = document.getElementById("review-status-modal");
+            const loadingBox = document.getElementById("review-modal-loading");
+            const successBox = document.getElementById("review-modal-success");
+            if (!modal || !loadingBox || !successBox) return;
+
+            if (estado === "loading") {
+                loadingBox.classList.remove("hidden");
+                loadingBox.classList.add("flex");
+                successBox.classList.add("hidden");
+                successBox.classList.remove("flex");
+                modal.classList.remove("hidden");
+            } else if (estado === "success") {
+                loadingBox.classList.add("hidden");
+                loadingBox.classList.remove("flex");
+                successBox.classList.remove("hidden");
+                successBox.classList.add("flex");
+            } else {
+                modal.classList.add("hidden");
+            }
+        }
+
+        async function cargarResenasDesdeSheet() {
+            renderizarResenas();
+            if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.startsWith("PEGA_AQUI")) return;
+
+            try {
+                const resp = await fetch(GOOGLE_SCRIPT_URL);
+                const data = await resp.json();
+                if (data && data.ok && Array.isArray(data.resenas) && data.resenas.length > 0) {
+                    listaResenas = [...data.resenas, ...RESENAS_INICIALES];
+                    inicioCarrusel = 0;
+                    renderizarResenas();
+                }
+            } catch (err) {
+                console.error("No se pudieron cargar las reseñas desde Google Sheets:", err);
+            }
+        }
+
+        let enviandoResena = false;
+
+        async function agregarResena(event) {
+            event.preventDefault();
+            if (enviandoResena) return;
+
+            // Verificación honeypot anti-spam: si el campo oculto tiene texto, ignoramos el envío
+            const honeypotEl = document.getElementById("rev-website");
+            if (honeypotEl && honeypotEl.value.trim() !== "") {
+                event.target.reset();
+                return;
+            }
+
+            const nombreEl = document.getElementById("rev-name");
+            const ubicacionEl = document.getElementById("rev-location");
+            const servicioEl = document.getElementById("rev-service");
+            const servicioCustomEl = document.getElementById("rev-service-custom");
+            const ratingEl = document.getElementById("rev-rating");
+            const comentarioEl = document.getElementById("rev-comment");
+            const feedback = document.getElementById("review-feedback");
+            const submitBtn = document.getElementById("submit-review-btn");
+
+            const nombre = nombreEl ? nombreEl.value.trim() : "";
+            const ubicacion = ubicacionEl ? formatearLocalidad(ubicacionEl.value) : "";
+            let servicio = servicioEl ? servicioEl.value.trim() : "";
+            if (servicio === "Otro") {
+                servicio = servicioCustomEl ? servicioCustomEl.value.trim() : "";
+            }
+            const estrellas = Number(ratingEl ? ratingEl.value : 5) || 5;
+            const comentario = comentarioEl ? comentarioEl.value.trim() : "";
+
+            if (!nombre || !ubicacion || !comentario) return;
+
+            enviandoResena = true;
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Enviando...";
+            }
+
+            // Mostrar circulito girando
+            mostrarModalEstadoResena("loading");
+
+            try {
+                if (GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.startsWith("PEGA_AQUI")) {
+                    await fetch(GOOGLE_SCRIPT_URL, {
+                        method: "POST",
+                        mode: "no-cors",
+                        headers: { "Content-Type": "text/plain;charset=utf-8" },
+                        body: JSON.stringify({ nombre, ubicacion, servicio, estrellas, comentario })
+                    });
+                }
+
+                // Pausa breve para apreciar la transición del círculo a la palomita
+                await new Promise((resolve) => setTimeout(resolve, 650));
+
+                // Transformar el círculo en palomita de confirmación
+                mostrarModalEstadoResena("success");
+
+                event.target.reset();
+                toggleOtroServicioInput();
+                seleccionarEstrellas(5);
+
+                if (feedback) {
+                    feedback.textContent = "¡Gracias por tu reseña! Se envió correctamente y aparecerá publicada en cuanto sea revisada.";
+                    feedback.classList.remove("hidden");
+                }
+
+                // Cerrar modal automáticamente tras mostrar la palomita
+                setTimeout(() => {
+                    mostrarModalEstadoResena("close");
+                }, 1700);
+            } catch (err) {
+                console.error("Error al enviar reseña:", err);
+                mostrarModalEstadoResena("close");
+                if (feedback) {
+                    feedback.textContent = "Ocurrió un problema de conexión al enviar tu reseña. Inténtalo de nuevo.";
+                    feedback.classList.remove("hidden");
+                }
+            } finally {
+                enviandoResena = false;
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = "Enviar Reseña";
+                }
+            }
+        }
+
+        const NUMERO_WHATSAPP = "523131181130";
+
+        let currentLightboxTitle = "";
+
+        function buildWhatsAppUrl(message) {
+            const cleanNumber = String(NUMERO_WHATSAPP).replace(/\D/g, "");
+            return `https://wa.me/${cleanNumber}?text=${encodeURIComponent(message)}`;
+        }
+
+        function openWhatsAppWithMessage(message) {
+            try {
+                const url = buildWhatsAppUrl(message);
+                window.open(url, "_blank", "noopener,noreferrer");
+            } catch (error) {
+                console.error("Error al abrir WhatsApp:", error);
+            }
+        }
+
+        function copiarEnlacePagina() {
+            const url = window.location.href;
+            const textEl = document.getElementById("copy-link-text");
+
+            const confirmarCopiado = () => {
+                if (!textEl) return;
+                const original = textEl.textContent;
+                textEl.textContent = "¡Enlace Copiado!";
+                setTimeout(() => {
+                    textEl.textContent = original;
+                }, 2200);
+            };
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(url).then(confirmarCopiado).catch(() => {
+                    fallbackCopy(url, confirmarCopiado);
+                });
+            } else {
+                fallbackCopy(url, confirmarCopiado);
+            }
+        }
+
+        function fallbackCopy(text, callback) {
+            const temp = document.createElement("input");
+            temp.value = text;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand("copy");
+            document.body.removeChild(temp);
+            if (callback) callback();
+        }
+
+        function compartirPaginaWhatsApp() {
+            const url = window.location.href;
+            const msg = `Te comparto la página de Ing. Arrezola | Ingeniería En Sistemas (Armado de PC, Cámaras CCTV, Redes Wi-Fi, Soporte y Puntos de Venta): ${url}`;
+            openWhatsAppWithMessage(msg);
+        }
+
+        function consultarServicio(serviceName, event) {
+            if (event) event.preventDefault();
+            const msg = `Hola Ing. Arrezola, me gustaría consultar información y cotización sobre: ${serviceName}.`;
+            openWhatsAppWithMessage(msg);
+        }
+
+        function consultarDesdeLightbox() {
+            const detail = currentLightboxTitle ? ` (${currentLightboxTitle})` : "";
+            const msg = `Hola Ing. Arrezola, vi un trabajo en su galería${detail} y me gustaría cotizar algo similar.`;
+            openWhatsAppWithMessage(msg);
+        }
+
+        function syncLocationInput() {
+            const selectEl = document.getElementById("quote-location-select");
+            const inputEl = document.getElementById("quote-location");
+            if (!selectEl || !inputEl) return;
+
+            if (selectEl.value !== "Otra") {
+                inputEl.value = formatearLocalidad(selectEl.value);
+            } else {
+                inputEl.value = "";
+                inputEl.focus();
+            }
+        }
+
+        function enviarCotizacion(event) {
+            event.preventDefault();
+            try {
+                const nameInput = document.getElementById("quote-name");
+                const serviceSelect = document.getElementById("quote-service");
+                const locationSelect = document.getElementById("quote-location-select");
+                const locationInput = document.getElementById("quote-location");
+                const detailsInput = document.getElementById("quote-details");
+                const feedbackBox = document.getElementById("quote-feedback");
+
+                const nombre = nameInput ? nameInput.value.trim() : "";
+                const servicio = serviceSelect ? serviceSelect.value : "Solución En Sistemas";
+                const localidad = (locationInput && locationInput.value.trim())
+                    ? formatearLocalidad(locationInput.value)
+                    : (locationSelect ? formatearLocalidad(locationSelect.value) : "No especificada");
+                const detalles = detailsInput ? detailsInput.value.trim() : "";
+
+                if (!detalles) {
+                    if (feedbackBox) {
+                        feedbackBox.textContent = "Por favor escribe brevemente los detalles del problema o requerimiento antes de continuar.";
+                        feedbackBox.classList.remove("hidden");
+                    }
+                    return;
+                }
+
+                const lines = [
+                    "Hola Ing. Arrezola, me gustaría solicitar una cotización:",
+                    nombre ? `• Nombre: ${nombre}` : null,
+                    `• Servicio: ${servicio}`,
+                    `• Localidad: ${localidad}`,
+                    `• Detalles: ${detalles}`
+                ].filter(Boolean);
+
+                const finalMessage = lines.join("\n");
+
+                if (feedbackBox) {
+                    feedbackBox.textContent = "Mensaje preparado para WhatsApp. Si no se abrió automáticamente, utiliza el botón flotante de WhatsApp.";
+                    feedbackBox.classList.remove("hidden");
+                }
+
+                openWhatsAppWithMessage(finalMessage);
+            } catch (error) {
+                console.error("Error al generar la cotización:", error);
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById("mobile-menu");
+            const icon = document.getElementById("mobile-menu-icon");
+            if (!menu || !icon) return;
+
+            const isHidden = menu.classList.contains("hidden");
+            if (isHidden) {
+                menu.classList.remove("hidden");
+                icon.classList.remove("fa-bars");
+                icon.classList.add("fa-xmark");
+            } else {
+                menu.classList.add("hidden");
+                icon.classList.remove("fa-xmark");
+                icon.classList.add("fa-bars");
+            }
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById("mobile-menu");
+            const icon = document.getElementById("mobile-menu-icon");
+            if (menu) menu.classList.add("hidden");
+            if (icon) {
+                icon.classList.remove("fa-xmark");
+                icon.classList.add("fa-bars");
+            }
+        }
+
+        function openLightbox(card) {
+            try {
+                const img = card.querySelector("img");
+                const cat = card.getAttribute("data-cat-label") || "";
+                const title = card.getAttribute("data-title") || "";
+                const specs = card.getAttribute("data-specs") || "";
+
+                currentLightboxTitle = title;
+
+                document.getElementById("lightbox-img").src = img ? img.src : "";
+                document.getElementById("lightbox-img").alt = title || "Trabajo Realizado";
+                document.getElementById("lightbox-cat").textContent = cat;
+                document.getElementById("lightbox-title").textContent = title;
+                document.getElementById("lightbox-specs").textContent = specs;
+                document.getElementById("lightbox-modal").classList.remove("hidden");
+            } catch (error) {
+                console.error("Error al abrir la imagen ampliada:", error);
+            }
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById("lightbox-modal");
+            if (modal) modal.classList.add("hidden");
+        }
+
+        function toggleFaq(buttonEl) {
+            const item = buttonEl.closest(".faq-item");
+            if (!item) return;
+            item.classList.toggle("open");
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            try {
+                const yearEl = document.getElementById("current-year");
+                if (yearEl) {
+                    yearEl.textContent = new Date().getFullYear();
+                }
+
+                cargarResenasDesdeSheet();
+                actualizarBotonAutoplay();
+                iniciarAutoplay();
+
+                const floatingWa = document.getElementById("floating-whatsapp-btn");
+                if (floatingWa) {
+                    floatingWa.href = buildWhatsAppUrl("Hola Ing. Arrezola, vi su página de Ingeniería En Sistemas y requiero información.");
+                }
+
+                // Filtros para la sección Nuestros Servicios
+                const serviceFilterBtns = document.querySelectorAll("#services-filters .srv-filter-btn");
+                const serviceCards = document.querySelectorAll("#services-grid article");
+
+                serviceFilterBtns.forEach((btn) => {
+                    btn.addEventListener("click", () => {
+                        serviceFilterBtns.forEach((b) => {
+                            b.classList.remove("bg-sky-500", "text-white");
+                            b.classList.add("bg-slate-800", "text-slate-300");
+                        });
+                        btn.classList.remove("bg-slate-800", "text-slate-300");
+                        btn.classList.add("bg-sky-500", "text-white");
+
+                        const filter = btn.getAttribute("data-service-filter");
+                        serviceCards.forEach((card) => {
+                            const cat = card.getAttribute("data-srv-cat");
+                            if (filter === "all" || cat === filter) {
+                                card.classList.remove("hidden");
+                            } else {
+                                card.classList.add("hidden");
+                            }
+                        });
+                    });
+                });
+
+                // Filtros para la Galería De Trabajos Realizados
+                const filterButtons = document.querySelectorAll("#gallery-filters .filter-btn");
+                const galleryItems = document.querySelectorAll("#gallery-grid .gallery-item");
+
+                filterButtons.forEach((btn) => {
+                    btn.addEventListener("click", () => {
+                        filterButtons.forEach((b) => {
+                            b.classList.remove("bg-sky-500", "text-white");
+                            b.classList.add("bg-slate-800", "text-slate-300");
+                        });
+                        btn.classList.remove("bg-slate-800", "text-slate-300");
+                        btn.classList.add("bg-sky-500", "text-white");
+
+                        const filter = btn.getAttribute("data-filter");
+                        galleryItems.forEach((item) => {
+                            const category = item.getAttribute("data-category");
+                            if (filter === "all" || category === filter) {
+                                item.classList.remove("hidden");
+                            } else {
+                                item.classList.add("hidden");
+                            }
+                        });
+                    });
+                });
+
+                const scrollTopBtn = document.getElementById("scroll-top-btn");
+                window.addEventListener("scroll", () => {
+                    if (!scrollTopBtn) return;
+                    if (window.scrollY > 360) {
+                        scrollTopBtn.classList.remove("opacity-0", "pointer-events-none");
+                        scrollTopBtn.classList.add("opacity-100");
+                    } else {
+                        scrollTopBtn.classList.add("opacity-0", "pointer-events-none");
+                        scrollTopBtn.classList.remove("opacity-100");
+                    }
+                });
+
+                document.addEventListener("keydown", (e) => {
+                    if (e.key === "Escape") {
+                        closeLightbox();
+                        closeMobileMenu();
+                    }
+                });
+            } catch (error) {
+                console.error("Error en la inicialización de la página:", error);
             }
         });
-    } catch (error) {
-        console.error("Error en la inicialización de la página:", error);
-    }
-});
-</script>
+    </script>
 </body>
 </html>
