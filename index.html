@@ -12,10 +12,23 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="ArrezolaCore | Ingeniería En Sistemas">
     <meta property="og:description" content="Soluciones tecnológicas integrales en Tecomán, Colima, Caleras, Madrid, Armería y Manzanillo: PCs a medida, CCTV, reparación, optimización, soporte móvil, DLNA, POS, domótica y respaldo UPS.">
-    <meta property="og:image" content="https://placehold.co/1200x630/0b0f19/38bdf8?text=Ing.+Arrezola+%7C+Ingenieria+En+Sistemas">
+    <meta property="og:image" content="https://placehold.co/1200x630/0b0f19/38bdf8?text=ArrezolaCore+%7C+Ingenieria+En+Sistemas">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="ArrezolaCore | Ingeniería En Sistemas">
     <meta name="twitter:description" content="Ingeniería En Sistemas en Tecomán, Colima, Caleras, Madrid, Armería y Manzanillo.">
+
+    <!-- Datos Estructurados Schema.org (SEO Local) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "ArrezolaCore — Ingeniería En Sistemas",
+      "description": "Armado de PC, mantenimiento de cómputo, reparación de hardware y software, CCTV, redes Wi-Fi, servidores multimedia, puntos de venta POS, UPS y montaje de pantallas.",
+      "telephone": "+52-313-118-1130",
+      "areaServed": ["Tecomán", "Colima", "Caleras", "Madrid", "Armería", "Manzanillo"],
+      "openingHours": ["Sa 08:00-18:00"]
+    }
+    </script>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -199,11 +212,11 @@
             </div>
 
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight text-center max-w-4xl mx-auto mb-7">
-                Soluciones Tecnológicas Integrales Con <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-emerald-300">Ing. Arrezola</span>
+                Soluciones Tecnológicas Integrales Con <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-emerald-300">ArrezolaCore</span>
             </h1>
 
             <p class="text-base sm:text-lg text-slate-400 text-justify max-w-3xl mx-auto mb-10 leading-relaxed">
-              Atención Profesional En Armado De PC, Mantenimiento Preventivo Y Correctivo De Equipos De Cómputo, Reparación De Hardware Y Software, Optimización De Sistemas Operativos, Instalación De Cámaras Analógicas E IP, Soporte Móvil, Servidores Multimedia DLNA, FTP, SMB, Puntos De Venta, Redes Wi-Fi Y Cableado Estructurado, Impresoras En Red, Respaldo Y Recuperación De Datos, Implementación Y Configuración De Dispositivos Streaming, Automatización E Iluminación Inteligente, Respaldo De Energía (Instalación Y Dimensionamiento De UPS / No-Break), Asesoría Y Cotización Para Compra De Equipo, Soporte Remoto, Seguridad Digital Y Limpieza De Amenazas, Migración De Equipo Y Clonación De Disco, Montaje Estructural Y Configuración De Pantallas.
+                Atención Profesional En Armado De PC, Mantenimiento Preventivo Y Correctivo De Equipos De Cómputo, Reparación De Hardware Y Software, Optimización De Sistemas Operativos, Instalación De Cámaras Analógicas E IP, Soporte Móvil, Servidores Multimedia DLNA, FTP, SMB, Puntos De Venta, Redes Wi-Fi Y Cableado Estructurado, Impresoras En Red, Respaldo Y Recuperación De Datos, Implementación Y Configuración De Dispositivos Streaming, Automatización E Iluminación Inteligente, Respaldo De Energía (Instalación Y Dimensionamiento De UPS / No-Break), Asesoría Y Cotización Para Compra De Equipo, Soporte Remoto, Seguridad Digital Y Limpieza De Amenazas, Migración De Equipo Y Clonación De Disco, Montaje Estructural Y Configuración De Pantallas.
             </p>
 
             <div class="flex flex-wrap items-center justify-center gap-4">
@@ -218,7 +231,7 @@
     </section>
 
     <!-- =========================================================================
-         SECCIÓN DE 20 SERVICIOS CON FILTROS POR CATEGORÍA
+         SECCIÓN DE 20 SERVICIOS CON BUSCADOR EN TIEMPO REAL Y FILTROS
          ========================================================================= -->
     <section id="servicios" class="py-20 bg-slate-900/45 border-y border-slate-800/70">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -229,23 +242,44 @@
                     Cada categoría cuenta con atención de ingeniería detallada para hogares, oficinas y negocios.
                 </p>
 
+                <!-- Buscador en tiempo real -->
+                <div class="w-full max-w-md mt-6 relative">
+                    <i class="fa-solid fa-magnifying-glass text-slate-400 text-sm absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                    <input type="search" id="services-search" oninput="filtrarServicios()"
+                           placeholder="Buscar servicio: CCTV, UPS, POS, DLNA, Wi-Fi, pantalla..."
+                           class="w-full pl-11 pr-10 py-2.5 rounded-xl bg-slate-950/85 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-sky-400 transition">
+                    <button type="button" id="clear-search-btn" onclick="limpiarFiltrosServicios()" aria-label="Limpiar búsqueda"
+                            class="hidden text-slate-400 hover:text-white text-xs absolute right-3.5 top-1/2 -translate-y-1/2 transition">
+                        <i class="fa-solid fa-xmark text-sm"></i>
+                    </button>
+                </div>
+
                 <!-- Barra de filtros para Nuestros Servicios -->
-                <div class="flex flex-wrap items-center justify-center gap-2.5 mt-7" id="services-filters">
-                    <button type="button" data-service-filter="all"
+                <div class="flex flex-wrap items-center justify-center gap-2.5 mt-5" id="services-filters">
+                    <button type="button" data-service-filter="all" onclick="seleccionarCategoriaServicio('all')"
                             class="srv-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-sky-500 text-white transition">
                         Todos (20)
                     </button>
-                    <button type="button" data-service-filter="computo"
+                    <button type="button" data-service-filter="computo" onclick="seleccionarCategoriaServicio('computo')"
                             class="srv-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
                         Cómputo Y Soporte
                     </button>
-                    <button type="button" data-service-filter="redes-seguridad"
+                    <button type="button" data-service-filter="redes-seguridad" onclick="seleccionarCategoriaServicio('redes-seguridad')"
                             class="srv-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
                         Redes, CCTV Y Energía
                     </button>
-                    <button type="button" data-service-filter="hogar-negocios"
+                    <button type="button" data-service-filter="hogar-negocios" onclick="seleccionarCategoriaServicio('hogar-negocios')"
                             class="srv-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
                         Hogar Y Negocios
+                    </button>
+                </div>
+
+                <!-- Contador dinámico + botón limpiar -->
+                <div class="flex flex-wrap items-center justify-center gap-3 mt-4 text-xs text-slate-400">
+                    <span id="services-counter">Mostrando 20 de 20 servicios</span>
+                    <button type="button" id="reset-services-btn" onclick="limpiarFiltrosServicios()"
+                            class="hidden text-sky-400 hover:text-emerald-300 font-semibold underline underline-offset-2 transition">
+                        Restablecer filtros
                     </button>
                 </div>
             </div>
@@ -255,7 +289,7 @@
                 <!-- 1. Armado De PC -->
                 <article data-srv-cat="computo" class="glass-card rounded-2xl overflow-hidden flex flex-col">
                     <div class="h-48 overflow-hidden bg-slate-800">
-                        <img src="img/armadodepc.jpg"
+                        <img src="img/armadodepc.jpg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Armado+De+PC'"
                              alt="Armado De PC"
                              class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
@@ -278,7 +312,7 @@
                 <!-- 2. Mantenimiento Preventivo Y Correctivo -->
                 <article data-srv-cat="computo" class="glass-card rounded-2xl overflow-hidden flex flex-col">
                     <div class="h-48 overflow-hidden bg-slate-800">
-                        <img src="img/mantenimiento.jpg"
+                        <img src="img/mantenimiento.jpg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Mantenimiento+De+Computo'"
                              alt="Mantenimiento Preventivo Y Correctivo"
                              class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
@@ -301,7 +335,7 @@
                 <!-- 3. Reparación (Hardware Y Software) -->
                 <article data-srv-cat="computo" class="glass-card rounded-2xl overflow-hidden flex flex-col">
                     <div class="h-48 overflow-hidden bg-slate-800">
-                        <img src="img/reparacion.jpg"
+                        <img src="img/reparacion.jpg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Reparacion+(Hardware+Y+Software)'"
                              alt="Reparación (Hardware Y Software)"
                              class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
@@ -324,7 +358,7 @@
                 <!-- 4. Optimización De Sistemas -->
                 <article data-srv-cat="computo" class="glass-card rounded-2xl overflow-hidden flex flex-col">
                     <div class="h-48 overflow-hidden bg-slate-800">
-                        <img src="img/optimizacion.jpg"
+                        <img src="img/optimizacion.jpg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Optimizacion+De+Sistemas'"
                              alt="Optimización De Sistemas"
                              class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
@@ -347,7 +381,7 @@
                 <!-- 5. Cámaras CCTV (Analógicas E IP) -->
                 <article data-srv-cat="redes-seguridad" class="glass-card rounded-2xl overflow-hidden flex flex-col">
                     <div class="h-48 overflow-hidden bg-slate-800">
-                        <img src="img/cctv.jpg"
+                        <img src="img/cctv.jpg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Camaras+CCTV+(Analogicas+E+IP)'"
                              alt="Cámaras CCTV (Analógicas E IP)"
                              class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
@@ -370,7 +404,7 @@
                 <!-- 6. Soporte Y Software Móvil -->
                 <article data-srv-cat="computo" class="glass-card rounded-2xl overflow-hidden flex flex-col">
                     <div class="h-48 overflow-hidden bg-slate-800">
-                        <img src="img/soporte.jpg"
+                        <img src="img/soporte.jpg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Soporte+Y+Software+Movil'"
                              alt="Soporte Y Software Móvil"
                              class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
@@ -393,7 +427,7 @@
                 <!-- 7. Servidores Multimedia (DLNA)(FTP)(SMB) -->
                 <article data-srv-cat="redes-seguridad" class="glass-card rounded-2xl overflow-hidden flex flex-col">
                     <div class="h-48 overflow-hidden bg-slate-800">
-                        <img src="img/servidores.jpeg"
+                        <img src="img/servidores.jpeg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Servidores+Multimedia+(DLNA)'"
                              alt="Servidores Multimedia (DLNA)(FTP)(SMB)"
                              class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
@@ -416,7 +450,7 @@
                 <!-- 8. Puntos De Venta (POS) -->
                 <article data-srv-cat="hogar-negocios" class="glass-card rounded-2xl overflow-hidden flex flex-col">
                     <div class="h-48 overflow-hidden bg-slate-800">
-                        <img src="img/pos.jpeg"
+                        <img src="img/pos.jpeg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Puntos+De+Venta+(POS)'"
                              alt="Puntos De Venta (POS)"
                              class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
@@ -439,7 +473,7 @@
                 <!-- 9. Redes Wi-Fi Y Cableado Estructurado -->
                 <article data-srv-cat="redes-seguridad" class="glass-card rounded-2xl overflow-hidden flex flex-col">
                     <div class="h-48 overflow-hidden bg-slate-800">
-                        <img src="img/cableado.jpg"
+                        <img src="img/cableado.jpg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Redes+Wi-Fi+Y+Cableado'"
                              alt="Redes Wi-Fi Y Cableado Estructurado"
                              class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
@@ -462,7 +496,7 @@
                 <!-- 10. Respaldo Y Recuperación De Datos -->
                 <article data-srv-cat="computo" class="glass-card rounded-2xl overflow-hidden flex flex-col">
                     <div class="h-48 overflow-hidden bg-slate-800">
-                        <img src="img/respaldo.jpg"
+                        <img src="img/respaldo.jpg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Respaldo+Y+Datos'"
                              alt="Respaldo Y Recuperación De Datos"
                              class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
@@ -485,7 +519,7 @@
                 <!-- 11. Instalación De Software, Drivers Y Office -->
                 <article data-srv-cat="computo" class="glass-card rounded-2xl overflow-hidden flex flex-col">
                     <div class="h-48 overflow-hidden bg-slate-800">
-                        <img src="img/drivers.jpeg"
+                        <img src="img/drivers.jpeg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Software,+Drivers+Y+Office'"
                              alt="Instalación De Software, Drivers Y Office"
                              class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
@@ -508,7 +542,7 @@
                 <!-- 12. Configuración De Impresoras Y Periféricos En Red -->
                 <article data-srv-cat="hogar-negocios" class="glass-card rounded-2xl overflow-hidden flex flex-col">
                     <div class="h-48 overflow-hidden bg-slate-800">
-                        <img src="img/impresora.jpg"
+                        <img src="img/impresora.jpg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Impresoras+Y+Perifericos'"
                              alt="Configuración De Impresoras Y Periféricos En Red"
                              class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
@@ -531,7 +565,7 @@
                 <!-- 13. Asesoría Y Cotización Para Compra De Equipo -->
                 <article data-srv-cat="computo" class="glass-card rounded-2xl overflow-hidden flex flex-col">
                     <div class="h-48 overflow-hidden bg-slate-800">
-                        <img src="img/cotizacion.jpg"
+                        <img src="img/cotizacion.jpg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Asesoria+Y+Cotizacion'"
                              alt="Asesoría Y Cotización Para Compra De Equipo"
                              class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
@@ -554,7 +588,7 @@
                 <!-- 14. Soporte Remoto -->
                 <article data-srv-cat="computo" class="glass-card rounded-2xl overflow-hidden flex flex-col">
                     <div class="h-48 overflow-hidden bg-slate-800">
-                        <img src="img/remoto.jpg"
+                        <img src="img/remoto.jpg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Soporte+Remoto'"
                              alt="Soporte Remoto"
                              class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
@@ -577,7 +611,7 @@
                 <!-- 15. Seguridad Digital Y Limpieza De Amenazas -->
                 <article data-srv-cat="computo" class="glass-card rounded-2xl overflow-hidden flex flex-col">
                     <div class="h-48 overflow-hidden bg-slate-800">
-                        <img src="img/seguridad.jpg"
+                        <img src="img/seguridad.jpg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Seguridad+Digital'"
                              alt="Seguridad Digital Y Limpieza De Amenazas"
                              class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
@@ -600,7 +634,7 @@
                 <!-- 16. Migración De Equipo Y Clonación De Disco -->
                 <article data-srv-cat="computo" class="glass-card rounded-2xl overflow-hidden flex flex-col">
                     <div class="h-48 overflow-hidden bg-slate-800">
-                        <img src="img/clonacion.jpg"
+                        <img src="img/clonacion.jpg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Migracion+Y+Clonacion'"
                              alt="Migración De Equipo Y Clonación De Disco"
                              class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
@@ -623,7 +657,7 @@
                 <!-- 17. Implementación Y Configuración De Dispositivos Streaming -->
                 <article data-srv-cat="hogar-negocios" class="glass-card rounded-2xl overflow-hidden flex flex-col">
                     <div class="h-48 overflow-hidden bg-slate-800">
-                        <img src="img/streaming.jpg"
+                        <img src="img/streaming.jpg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Dispositivos+De+Streaming'"
                              alt="Implementación Y Configuración De Dispositivos Streaming"
                              class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
@@ -646,7 +680,7 @@
                 <!-- 18. Automatización E Iluminación Inteligente -->
                 <article data-srv-cat="hogar-negocios" class="glass-card rounded-2xl overflow-hidden flex flex-col">
                     <div class="h-48 overflow-hidden bg-slate-800">
-                        <img src="img/inteligente.jpg"
+                        <img src="img/inteligente.jpg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Automatizacion+E+Iluminacion'"
                              alt="Automatización E Iluminación Inteligente"
                              class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
@@ -669,7 +703,7 @@
                 <!-- 19. Respaldo De Energía (Instalación Y Dimensionamiento De UPS / No-Break) -->
                 <article data-srv-cat="redes-seguridad" class="glass-card rounded-2xl overflow-hidden flex flex-col">
                     <div class="h-48 overflow-hidden bg-slate-800">
-                        <img src="img/ups.jpg"
+                        <img src="img/ups.jpg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Respaldo+De+Energia+UPS'"
                              alt="Respaldo De Energía (Instalación Y Dimensionamiento De UPS / No-Break)"
                              class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
@@ -692,7 +726,7 @@
                 <!-- 20. Montaje Estructural Y Configuración De Pantallas -->
                 <article data-srv-cat="hogar-negocios" class="glass-card rounded-2xl overflow-hidden flex flex-col">
                     <div class="h-48 overflow-hidden bg-slate-800">
-                        <img src="img/pantallas.jpg"
+                        <img src="img/pantallas.jpg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x400/1e293b/38bdf8?text=Montaje+De+Pantallas'"
                              alt="Montaje Estructural Y Configuración De Pantallas"
                              class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
@@ -713,11 +747,19 @@
                 </article>
 
             </div>
+
+            <!-- Mensaje cuando no hay coincidencias en búsqueda/filtro -->
+            <div id="no-services-msg" class="hidden mt-8 glass-card p-8 rounded-2xl text-center text-slate-400 text-sm">
+                No se encontraron servicios con ese criterio.
+                <button type="button" onclick="limpiarFiltrosServicios()" class="ml-1 text-sky-400 hover:text-emerald-300 font-semibold underline">
+                    Ver los 20 servicios
+                </button>
+            </div>
         </div>
     </section>
 
     <!-- =========================================================================
-         GALERÍA FILTRABLE DE TRABAJOS REALIZADOS + LIGHTBOX CON FICHA DE PROYECTO
+         GALERÍA FILTRABLE DE TRABAJOS REALIZADOS + LIGHTBOX CON NAVEGACIÓN
          ========================================================================= -->
     <section id="galeria" class="py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -725,38 +767,38 @@
                 <span class="text-sky-400 font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3">Portafolio Visual</span>
                 <h2 class="text-3xl sm:text-4xl font-bold text-white text-center mb-4">Galería De Trabajos Realizados</h2>
                 <p class="text-slate-400 text-center text-sm sm:text-base max-w-2xl mb-8">
-                    Selecciona una fotografía para verla ampliada junto con su categoría y ficha de especificaciones del proyecto.
+                    Selecciona una fotografía para verla ampliada, navegar entre proyectos y consultar su ficha de especificaciones.
                 </p>
 
-                <!-- Filtros en Title Case -->
+                <!-- Filtros con conteo -->
                 <div class="flex flex-wrap items-center justify-center gap-2.5" id="gallery-filters">
                     <button type="button" data-filter="all"
                             class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-sky-500 text-white transition">
-                        Todos
+                        Todos (6)
                     </button>
                     <button type="button" data-filter="pc"
                             class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
-                        PCs Armadas
+                        PCs Armadas (1)
                     </button>
                     <button type="button" data-filter="mantenimiento"
                             class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
-                        Mantenimientos
+                        Mantenimientos (1)
                     </button>
                     <button type="button" data-filter="cctv"
                             class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
-                        Cámaras CCTV
+                        Cámaras CCTV (1)
                     </button>
                     <button type="button" data-filter="redes-dlna"
                             class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
-                        Redes Y DLNA
+                        Redes Y DLNA (1)
                     </button>
                     <button type="button" data-filter="pos"
                             class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
-                        Puntos De Venta (POS)
+                        Puntos De Venta (POS) (1)
                     </button>
                     <button type="button" data-filter="reparacion"
                             class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
-                        Reparación
+                        Reparación (1)
                     </button>
                 </div>
             </div>
@@ -771,7 +813,7 @@
                      data-specs="Ensamble completo, flujo de aire optimizado, cableado ordenado, pruebas de estrés y Windows optimizado."
                      class="gallery-item cursor-pointer group rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-sky-500/50 transition flex flex-col">
                     <div class="relative h-52 overflow-hidden bg-slate-800">
-                        <img src="img/pcusuarios.jpg"
+                        <img src="img/pcusuarios.jpg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x450/0f172a/38bdf8?text=PC+Armada+A+Medida'"
                              alt="PC De Escritorio Gaming"
                              class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
@@ -800,7 +842,7 @@
                      data-specs="Limpieza interna de disipadores y ventiladores, retiro de polvo, cambio de pasta térmica y corrección de fallas."
                      class="gallery-item cursor-pointer group rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-sky-500/50 transition flex flex-col">
                     <div class="relative h-52 overflow-hidden bg-slate-800">
-                        <img src="img/mantenimientousuarios.jpg"
+                        <img src="img/mantenimientousuarios.jpg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x450/0f172a/38bdf8?text=Mantenimiento+Preventivo+Y+Correctivo'"
                              alt="Mantenimiento Preventivo Y Correctivo"
                              class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
@@ -829,7 +871,7 @@
                      data-specs="Montaje de cámaras, canalización limpia, grabación continua y configuración de app móvil para monitoreo remoto."
                      class="gallery-item cursor-pointer group rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-sky-500/50 transition flex flex-col">
                     <div class="relative h-52 overflow-hidden bg-slate-800">
-                        <img src="img/camarasusuarios.jpg"
+                        <img src="img/camarasusuarios.jpg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x450/0f172a/38bdf8?text=Instalacion+CCTV'"
                              alt="Instalación CCTV Analógica E IP"
                              class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
@@ -858,7 +900,7 @@
                      data-specs="Configuración de routers, puntos de acceso, IP estática y servidor multimedia local para Smart TV."
                      class="gallery-item cursor-pointer group rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-sky-500/50 transition flex flex-col">
                     <div class="relative h-52 overflow-hidden bg-slate-800">
-                        <img src="img/redesusuarios.jpg"
+                        <img src="img/redesusuarios.jpg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x450/0f172a/38bdf8?text=Redes+Y+DLNA'"
                              alt="Infraestructura De Red Y Servidor DLNA"
                              class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
@@ -887,7 +929,7 @@
                      data-specs="Puesta en marcha de software de caja e inventarios, integración de lectores de códigos de barras, cajón de dinero e impresoras térmicas."
                      class="gallery-item cursor-pointer group rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-sky-500/50 transition flex flex-col">
                     <div class="relative h-52 overflow-hidden bg-slate-800">
-                        <img src="img/posusuarios.jpg"
+                        <img src="img/posusuarios.jpg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x450/0f172a/38bdf8?text=Puntos+De+Venta+POS'"
                              alt="Implementación De Punto De Venta (POS)"
                              class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
@@ -916,7 +958,7 @@
                      data-specs="Reemplazo de piezas, mejoras de memoria o SSD, formateo, respaldo de información e instalación de programas para dejar el equipo estable y funcional."
                      class="gallery-item cursor-pointer group rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-sky-500/50 transition flex flex-col">
                     <div class="relative h-52 overflow-hidden bg-slate-800">
-                        <img src="img/reparacionusuarios.jpg"
+                        <img src="img/reparacionusuarios.jpg" loading="lazy"
                              onerror="this.src='https://placehold.co/600x450/0f172a/38bdf8?text=Reparacion+De+Equipos'"
                              alt="Reparación De Equipos"
                              class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
@@ -942,13 +984,13 @@
     </section>
 
     <!-- =========================================================================
-         SECCIÓN ¿POR QUÉ ELEGIR A ING. ARREZOLA?
+         SECCIÓN ¿POR QUÉ ELEGIR A ARREZOLACORE?
          ========================================================================= -->
     <section id="por-que-elegirnos" class="py-20 bg-slate-900/45 border-y border-slate-800/70">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16 flex flex-col items-center">
                 <span class="text-emerald-400 font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3">Respaldo Y Confianza</span>
-                <h2 class="text-3xl sm:text-4xl font-bold text-white text-center">¿Por Qué Elegir A Ing. Arrezola?</h2>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white text-center">¿Por Qué Elegir A ArrezolaCore?</h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -1246,7 +1288,7 @@
     </section>
 
     <!-- =========================================================================
-         COTIZADOR RÁPIDO (ARMA EL MENSAJE PARA WHATSAPP)
+         COTIZADOR RÁPIDO (MODALIDAD, URGENCIA, WHATSAPP Y COPIAR MENSAJE)
          ========================================================================= -->
     <section id="cotizador" class="py-20">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1254,7 +1296,7 @@
                 <span class="text-emerald-400 font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3">Solicitud Directa</span>
                 <h2 class="text-3xl sm:text-4xl font-bold text-white text-center mb-4">Cotizador Rápido</h2>
                 <p class="text-slate-400 text-center text-sm sm:text-base">
-                    Completa estos datos y se preparará tu mensaje listo para enviar por WhatsApp.
+                    Completa estos datos y se preparará tu mensaje listo para enviar por WhatsApp o copiar.
                 </p>
             </div>
 
@@ -1296,6 +1338,29 @@
                     </div>
                 </div>
 
+                <!-- Modalidad Y Urgencia -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                        <label for="quote-modality" class="block text-sm font-semibold text-white mb-2">Modalidad De Atención</label>
+                        <select id="quote-modality"
+                                class="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-slate-700 text-white focus:outline-none focus:border-sky-400 transition">
+                            <option value="A domicilio">A domicilio</option>
+                            <option value="En taller">En taller</option>
+                            <option value="Soporte remoto">Soporte remoto</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="quote-urgency" class="block text-sm font-semibold text-white mb-2">Urgencia</label>
+                        <select id="quote-urgency"
+                                class="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-slate-700 text-white focus:outline-none focus:border-sky-400 transition">
+                            <option value="Lo antes posible">Lo antes posible</option>
+                            <option value="Esta semana">Esta semana</option>
+                            <option value="Solo cotización">Solo cotización</option>
+                        </select>
+                    </div>
+                </div>
+
                 <!-- Localidad (Selección Rápida + Campo Editable) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
@@ -1333,12 +1398,19 @@
 
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
                     <span class="text-xs text-slate-400">
-                        Se abrirá WhatsApp con tu mensaje redactado automáticamente.
+                        Envía directo por WhatsApp o copia el mensaje con un clic.
                     </span>
-                    <button type="submit"
-                            class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-emerald-600 hover:from-sky-400 hover:to-emerald-500 text-white font-bold text-sm sm:text-base shadow-lg shadow-sky-500/25 transition">
-                        Preparar Cotización En WhatsApp
-                    </button>
+                    <div class="w-full sm:w-auto flex flex-col sm:flex-row items-center gap-3">
+                        <button type="button" id="copy-quote-btn" onclick="copiarMensajeCotizacion()"
+                                class="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold text-sm inline-flex items-center justify-center gap-2 transition">
+                            <i class="fa-regular fa-copy text-sky-400"></i>
+                            <span id="copy-quote-text">Copiar Mensaje</span>
+                        </button>
+                        <button type="submit"
+                                class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-emerald-600 hover:from-sky-400 hover:to-emerald-500 text-white font-bold text-sm sm:text-base shadow-lg shadow-sky-500/25 transition">
+                            Preparar Cotización En WhatsApp
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>
@@ -1474,10 +1546,10 @@
     <!-- =========================================================================
          PIE DE PÁGINA CON BOTONES DIRECTOS PARA COMPARTIR
          ========================================================================= -->
-    <footer class="bg-slate-950 border-t border-slate-800/80 py-10">
+    <footer class="bg-slate-950 border-t border-slate-800/80 py-10 pb-28 sm:pb-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
             <div>
-                <p class="text-white font-bold text-base">Ing. Arrezola — Ingeniería En Sistemas</p>
+                <p class="text-white font-bold text-base">ArrezolaCore — Ingeniería En Sistemas</p>
                 <p class="text-slate-500 text-xs mt-1">Tecomán, Colima, Caleras, Madrid, Armería Y Manzanillo</p>
             </div>
 
@@ -1496,7 +1568,7 @@
             </div>
 
             <p class="text-slate-500 text-xs sm:text-sm">
-                © <span id="current-year"></span> Ing. Arrezola. Todos Los Derechos Reservados.
+                © <span id="current-year"></span> ArrezolaCore. Todos Los Derechos Reservados.
             </p>
         </div>
     </footer>
@@ -1546,23 +1618,38 @@
     </div>
 
     <!-- =========================================================================
-         MODAL LIGHTBOX PARA VER FOTOS CON TÍTULO, CATEGORÍA Y ALCANCE
+         MODAL LIGHTBOX CON NAVEGACIÓN ANTERIOR / SIGUIENTE
          ========================================================================= -->
     <div id="lightbox-modal" onclick="closeLightbox()"
          class="fixed inset-0 z-50 hidden bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4">
         <div onclick="event.stopPropagation()"
              class="relative max-w-3xl w-full bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden shadow-2xl">
             <button type="button" onclick="closeLightbox()" aria-label="Cerrar Vista Ampliada"
-                    class="absolute top-3 right-3 z-10 w-10 h-10 rounded-full bg-slate-950/85 text-white hover:bg-rose-600 flex items-center justify-center text-xl transition">
+                    class="absolute top-3 right-3 z-20 w-10 h-10 rounded-full bg-slate-950/85 text-white hover:bg-rose-600 flex items-center justify-center text-xl transition">
                 ×
             </button>
 
-            <img id="lightbox-img" src="" alt="Vista Ampliada De Trabajo"
-                 class="w-full max-h-[62vh] object-contain bg-slate-950">
+            <div class="relative bg-slate-950 flex items-center justify-center">
+                <button type="button" id="lightbox-prev-btn" onclick="navegarLightbox(-1)" aria-label="Trabajo anterior"
+                        class="z-10 w-10 h-10 rounded-full bg-slate-900/85 hover:bg-sky-500 text-white border border-slate-700 flex items-center justify-center transition absolute left-3">
+                    <i class="fa-solid fa-chevron-left text-xs"></i>
+                </button>
+
+                <img id="lightbox-img" src="" alt="Vista Ampliada De Trabajo"
+                     class="w-full max-h-[60vh] object-contain bg-slate-950">
+
+                <button type="button" id="lightbox-next-btn" onclick="navegarLightbox(1)" aria-label="Siguiente trabajo"
+                        class="z-10 w-10 h-10 rounded-full bg-slate-900/85 hover:bg-sky-500 text-white border border-slate-700 flex items-center justify-center transition absolute right-3">
+                    <i class="fa-solid fa-chevron-right text-xs"></i>
+                </button>
+            </div>
 
             <div class="p-5 sm:p-6 bg-slate-900 border-t border-slate-800 space-y-2">
                 <div class="flex flex-wrap items-center justify-between gap-2">
-                    <span id="lightbox-cat" class="text-xs font-bold uppercase tracking-wider text-sky-400"></span>
+                    <div class="flex items-center gap-3">
+                        <span id="lightbox-cat" class="text-xs font-bold uppercase tracking-wider text-sky-400"></span>
+                        <span id="lightbox-position" class="text-xs text-slate-400 font-medium"></span>
+                    </div>
                     <button type="button" onclick="consultarDesdeLightbox()"
                             class="px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs sm:text-sm font-semibold transition">
                         Cotizar Trabajo Similar
@@ -1638,6 +1725,85 @@
         let autoplayActivo = true;
         let autoplayHoverPausado = false;
         let autoplayTimer = null;
+
+        // Estado de filtros y búsqueda de servicios
+        let categoriaServicioActual = "all";
+        const TOTAL_SERVICIOS = 20;
+
+        // Estado de navegación del Lightbox
+        let itemsLightboxActivos = [];
+        let indiceLightboxActual = 0;
+
+        function normalizarTexto(texto) {
+            return String(texto || "")
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "");
+        }
+
+        function seleccionarCategoriaServicio(cat) {
+            categoriaServicioActual = cat;
+            const serviceFilterBtns = document.querySelectorAll("#services-filters .srv-filter-btn");
+            serviceFilterBtns.forEach((b) => {
+                if (b.getAttribute("data-service-filter") === cat) {
+                    b.classList.remove("bg-slate-800", "text-slate-300");
+                    b.classList.add("bg-sky-500", "text-white");
+                } else {
+                    b.classList.remove("bg-sky-500", "text-white");
+                    b.classList.add("bg-slate-800", "text-slate-300");
+                }
+            });
+            filtrarServicios();
+        }
+
+        function filtrarServicios() {
+            const searchInput = document.getElementById("services-search");
+            const clearBtn = document.getElementById("clear-search-btn");
+            const resetBtn = document.getElementById("reset-services-btn");
+            const counterEl = document.getElementById("services-counter");
+            const emptyMsg = document.getElementById("no-services-msg");
+            const serviceCards = document.querySelectorAll("#services-grid article");
+
+            const rawQuery = searchInput ? searchInput.value.trim() : "";
+            const query = normalizarTexto(rawQuery);
+
+            if (clearBtn) {
+                clearBtn.classList.toggle("hidden", rawQuery.length === 0);
+            }
+
+            let visibles = 0;
+            serviceCards.forEach((card) => {
+                const cat = card.getAttribute("data-srv-cat");
+                const matchesCat = categoriaServicioActual === "all" || cat === categoriaServicioActual;
+                const matchesQuery = !query || normalizarTexto(card.textContent).includes(query);
+
+                if (matchesCat && matchesQuery) {
+                    card.classList.remove("hidden");
+                    visibles++;
+                } else {
+                    card.classList.add("hidden");
+                }
+            });
+
+            if (counterEl) {
+                counterEl.textContent = `Mostrando ${visibles} de ${TOTAL_SERVICIOS} servicios`;
+            }
+
+            if (emptyMsg) {
+                emptyMsg.classList.toggle("hidden", visibles > 0);
+            }
+
+            if (resetBtn) {
+                const hayFiltroActivo = categoriaServicioActual !== "all" || rawQuery.length > 0;
+                resetBtn.classList.toggle("hidden", !hayFiltroActivo);
+            }
+        }
+
+        function limpiarFiltrosServicios() {
+            const searchInput = document.getElementById("services-search");
+            if (searchInput) searchInput.value = "";
+            seleccionarCategoriaServicio("all");
+        }
 
         function escaparTexto(texto) {
             const div = document.createElement("div");
@@ -1847,7 +2013,6 @@
             inicioCarrusel += paso;
             renderizarResenas();
 
-            // Si el usuario usa las flechas manualmente, reiniciamos el temporizador o pausamos brevemente
             if (interaccionManual && autoplayActivo) {
                 reiniciarAutoplay();
             }
@@ -1950,7 +2115,6 @@
             event.preventDefault();
             if (enviandoResena) return;
 
-            // Verificación honeypot anti-spam: si el campo oculto tiene texto, ignoramos el envío
             const honeypotEl = document.getElementById("rev-website");
             if (honeypotEl && honeypotEl.value.trim() !== "") {
                 event.target.reset();
@@ -1983,7 +2147,6 @@
                 submitBtn.textContent = "Enviando...";
             }
 
-            // Mostrar circulito girando
             mostrarModalEstadoResena("loading");
 
             try {
@@ -1996,10 +2159,7 @@
                     });
                 }
 
-                // Pausa breve para apreciar la transición del círculo a la palomita
                 await new Promise((resolve) => setTimeout(resolve, 650));
-
-                // Transformar el círculo en palomita de confirmación
                 mostrarModalEstadoResena("success");
 
                 event.target.reset();
@@ -2011,7 +2171,6 @@
                     feedback.classList.remove("hidden");
                 }
 
-                // Cerrar modal automáticamente tras mostrar la palomita
                 setTimeout(() => {
                     mostrarModalEstadoResena("close");
                 }, 1700);
@@ -2049,6 +2208,16 @@
             }
         }
 
+        function copiarTextoConFallback(text, onSuccess) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(onSuccess).catch(() => {
+                    fallbackCopy(text, onSuccess);
+                });
+            } else {
+                fallbackCopy(text, onSuccess);
+            }
+        }
+
         function copiarEnlacePagina() {
             const url = window.location.href;
             const textEl = document.getElementById("copy-link-text");
@@ -2062,13 +2231,7 @@
                 }, 2200);
             };
 
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(url).then(confirmarCopiado).catch(() => {
-                    fallbackCopy(url, confirmarCopiado);
-                });
-            } else {
-                fallbackCopy(url, confirmarCopiado);
-            }
+            copiarTextoConFallback(url, confirmarCopiado);
         }
 
         function fallbackCopy(text, callback) {
@@ -2083,76 +2246,115 @@
 
         function compartirPaginaWhatsApp() {
             const url = window.location.href;
-            const msg = `Te comparto la página de Ing. Arrezola | Ingeniería En Sistemas (Armado de PC, Cámaras CCTV, Redes Wi-Fi, Soporte y Puntos de Venta): ${url}`;
+            const msg = `Te comparto la página de ArrezolaCore | Ingeniería En Sistemas (Armado de PC, Cámaras CCTV, Redes Wi-Fi, Soporte y Puntos de Venta): ${url}`;
             openWhatsAppWithMessage(msg);
         }
 
         function consultarServicio(serviceName, event) {
             if (event) event.preventDefault();
-            const msg = `Hola Ing. Arrezola, me gustaría consultar información y cotización sobre: ${serviceName}.`;
+            const msg = `Hola ArrezolaCore, me gustaría consultar información y cotización sobre: ${serviceName}.`;
             openWhatsAppWithMessage(msg);
         }
 
         function consultarDesdeLightbox() {
             const detail = currentLightboxTitle ? ` (${currentLightboxTitle})` : "";
-            const msg = `Hola Ing. Arrezola, vi un trabajo en su galería${detail} y me gustaría cotizar algo similar.`;
+            const msg = `Hola ArrezolaCore, vi un trabajo en su galería${detail} y me gustaría cotizar algo similar.`;
             openWhatsAppWithMessage(msg);
         }
 
-        function syncLocationInput() {
-            const selectEl = document.getElementById("quote-location-select");
-            const inputEl = document.getElementById("quote-location");
-            if (!selectEl || !inputEl) return;
+      function syncLocationInput() {
+    const selectEl = document.getElementById("quote-location-select");
+    const inputEl = document.getElementById("quote-location");
+    if (!selectEl || !inputEl) return;
 
-            if (selectEl.value !== "Otra") {
-                inputEl.value = formatearLocalidad(selectEl.value);
-            } else {
-                inputEl.value = "";
-                inputEl.focus();
+    if (selectEl.value === "Otra") {
+        inputEl.focus();
+    }
+}
+
+        function construirMensajeCotizacion() {
+            const nameInput = document.getElementById("quote-name");
+            const serviceSelect = document.getElementById("quote-service");
+            const modalitySelect = document.getElementById("quote-modality");
+            const urgencySelect = document.getElementById("quote-urgency");
+            const locationSelect = document.getElementById("quote-location-select");
+            const locationInput = document.getElementById("quote-location");
+            const detailsInput = document.getElementById("quote-details");
+
+            const nombre = nameInput ? nameInput.value.trim() : "";
+            const servicio = serviceSelect ? serviceSelect.value : "Solución En Sistemas";
+            const modalidad = modalitySelect ? modalitySelect.value : "A domicilio";
+            const urgencia = urgencySelect ? urgencySelect.value : "Lo antes posible";
+            const localidad = (locationInput && locationInput.value.trim())
+                ? formatearLocalidad(locationInput.value)
+                : (locationSelect ? formatearLocalidad(locationSelect.value) : "No especificada");
+            const detalles = detailsInput ? detailsInput.value.trim() : "";
+
+            if (!detalles) {
+                return { error: "Por favor escribe brevemente los detalles del problema o requerimiento antes de continuar." };
             }
+
+            const lines = [
+                "Hola ArrezolaCore, me gustaría solicitar una cotización:",
+                nombre ? `• Nombre: ${nombre}` : null,
+                `• Servicio: ${servicio}`,
+                `• Modalidad: ${modalidad}`,
+                `• Urgencia: ${urgencia}`,
+                `• Localidad: ${localidad}`,
+                `• Detalles: ${detalles}`
+            ].filter(Boolean);
+
+            return { message: lines.join("\n") };
+        }
+
+        function copiarMensajeCotizacion() {
+            const feedbackBox = document.getElementById("quote-feedback");
+            const textEl = document.getElementById("copy-quote-text");
+            const { message, error } = construirMensajeCotizacion();
+
+            if (error) {
+                if (feedbackBox) {
+                    feedbackBox.textContent = error;
+                    feedbackBox.classList.remove("hidden");
+                }
+                return;
+            }
+
+            copiarTextoConFallback(message, () => {
+                if (textEl) {
+                    const original = textEl.textContent;
+                    textEl.textContent = "¡Copiado!";
+                    setTimeout(() => {
+                        textEl.textContent = original;
+                    }, 2200);
+                }
+                if (feedbackBox) {
+                    feedbackBox.textContent = "Mensaje de cotización copiado al portapapeles.";
+                    feedbackBox.classList.remove("hidden");
+                }
+            });
         }
 
         function enviarCotizacion(event) {
             event.preventDefault();
             try {
-                const nameInput = document.getElementById("quote-name");
-                const serviceSelect = document.getElementById("quote-service");
-                const locationSelect = document.getElementById("quote-location-select");
-                const locationInput = document.getElementById("quote-location");
-                const detailsInput = document.getElementById("quote-details");
                 const feedbackBox = document.getElementById("quote-feedback");
+                const { message, error } = construirMensajeCotizacion();
 
-                const nombre = nameInput ? nameInput.value.trim() : "";
-                const servicio = serviceSelect ? serviceSelect.value : "Solución En Sistemas";
-                const localidad = (locationInput && locationInput.value.trim())
-                    ? formatearLocalidad(locationInput.value)
-                    : (locationSelect ? formatearLocalidad(locationSelect.value) : "No especificada");
-                const detalles = detailsInput ? detailsInput.value.trim() : "";
-
-                if (!detalles) {
+                if (error) {
                     if (feedbackBox) {
-                        feedbackBox.textContent = "Por favor escribe brevemente los detalles del problema o requerimiento antes de continuar.";
+                        feedbackBox.textContent = error;
                         feedbackBox.classList.remove("hidden");
                     }
                     return;
                 }
 
-                const lines = [
-                    "Hola Ing. Arrezola, me gustaría solicitar una cotización:",
-                    nombre ? `• Nombre: ${nombre}` : null,
-                    `• Servicio: ${servicio}`,
-                    `• Localidad: ${localidad}`,
-                    `• Detalles: ${detalles}`
-                ].filter(Boolean);
-
-                const finalMessage = lines.join("\n");
-
                 if (feedbackBox) {
-                    feedbackBox.textContent = "Mensaje preparado para WhatsApp. Si no se abrió automáticamente, utiliza el botón flotante de WhatsApp.";
+                    feedbackBox.textContent = "Mensaje preparado para WhatsApp. Si no se abrió automáticamente, utiliza el botón flotante de WhatsApp o copia el mensaje.";
                     feedbackBox.classList.remove("hidden");
                 }
 
-                openWhatsAppWithMessage(finalMessage);
+                openWhatsAppWithMessage(message);
             } catch (error) {
                 console.error("Error al generar la cotización:", error);
             }
@@ -2185,24 +2387,49 @@
             }
         }
 
+        function renderizarTarjetaLightbox(indice) {
+            if (!itemsLightboxActivos.length) return;
+            const total = itemsLightboxActivos.length;
+            indiceLightboxActual = ((indice % total) + total) % total;
+
+            const card = itemsLightboxActivos[indiceLightboxActual];
+            const img = card.querySelector("img");
+            const cat = card.getAttribute("data-cat-label") || "";
+            const title = card.getAttribute("data-title") || "";
+            const specs = card.getAttribute("data-specs") || "";
+
+            currentLightboxTitle = title;
+
+            const imgEl = document.getElementById("lightbox-img");
+            if (imgEl && img) {
+                imgEl.src = img.src;
+                imgEl.alt = title || "Trabajo Realizado";
+            }
+
+            document.getElementById("lightbox-cat").textContent = cat;
+            document.getElementById("lightbox-position").textContent = `${indiceLightboxActual + 1} de ${total}`;
+            document.getElementById("lightbox-title").textContent = title;
+            document.getElementById("lightbox-specs").textContent = specs;
+
+            const showArrows = total > 1;
+            document.getElementById("lightbox-prev-btn").classList.toggle("hidden", !showArrows);
+            document.getElementById("lightbox-next-btn").classList.toggle("hidden", !showArrows);
+        }
+
         function openLightbox(card) {
             try {
-                const img = card.querySelector("img");
-                const cat = card.getAttribute("data-cat-label") || "";
-                const title = card.getAttribute("data-title") || "";
-                const specs = card.getAttribute("data-specs") || "";
-
-                currentLightboxTitle = title;
-
-                document.getElementById("lightbox-img").src = img ? img.src : "";
-                document.getElementById("lightbox-img").alt = title || "Trabajo Realizado";
-                document.getElementById("lightbox-cat").textContent = cat;
-                document.getElementById("lightbox-title").textContent = title;
-                document.getElementById("lightbox-specs").textContent = specs;
+                itemsLightboxActivos = Array.from(document.querySelectorAll("#gallery-grid .gallery-item:not(.hidden)"));
+                const idx = itemsLightboxActivos.indexOf(card);
+                renderizarTarjetaLightbox(idx >= 0 ? idx : 0);
                 document.getElementById("lightbox-modal").classList.remove("hidden");
             } catch (error) {
                 console.error("Error al abrir la imagen ampliada:", error);
             }
+        }
+
+        function navegarLightbox(paso) {
+            if (!itemsLightboxActivos.length) return;
+            renderizarTarjetaLightbox(indiceLightboxActual + paso);
         }
 
         function closeLightbox() {
@@ -2230,36 +2457,12 @@
                 cargarResenasDesdeSheet();
                 actualizarBotonAutoplay();
                 iniciarAutoplay();
+                filtrarServicios();
 
                 const floatingWa = document.getElementById("floating-whatsapp-btn");
                 if (floatingWa) {
-                    floatingWa.href = buildWhatsAppUrl("Hola Ing. Arrezola, vi su página de Ingeniería En Sistemas y requiero información.");
+                    floatingWa.href = buildWhatsAppUrl("Hola ArrezolaCore, vi su página de Ingeniería En Sistemas y requiero información.");
                 }
-
-                // Filtros para la sección Nuestros Servicios
-                const serviceFilterBtns = document.querySelectorAll("#services-filters .srv-filter-btn");
-                const serviceCards = document.querySelectorAll("#services-grid article");
-
-                serviceFilterBtns.forEach((btn) => {
-                    btn.addEventListener("click", () => {
-                        serviceFilterBtns.forEach((b) => {
-                            b.classList.remove("bg-sky-500", "text-white");
-                            b.classList.add("bg-slate-800", "text-slate-300");
-                        });
-                        btn.classList.remove("bg-slate-800", "text-slate-300");
-                        btn.classList.add("bg-sky-500", "text-white");
-
-                        const filter = btn.getAttribute("data-service-filter");
-                        serviceCards.forEach((card) => {
-                            const cat = card.getAttribute("data-srv-cat");
-                            if (filter === "all" || cat === filter) {
-                                card.classList.remove("hidden");
-                            } else {
-                                card.classList.add("hidden");
-                            }
-                        });
-                    });
-                });
 
                 // Filtros para la Galería De Trabajos Realizados
                 const filterButtons = document.querySelectorAll("#gallery-filters .filter-btn");
@@ -2299,6 +2502,11 @@
                 });
 
                 document.addEventListener("keydown", (e) => {
+                    const lightboxOpen = !document.getElementById("lightbox-modal").classList.contains("hidden");
+                    if (lightboxOpen) {
+                        if (e.key === "ArrowLeft") navegarLightbox(-1);
+                        if (e.key === "ArrowRight") navegarLightbox(1);
+                    }
                     if (e.key === "Escape") {
                         closeLightbox();
                         closeMobileMenu();
