@@ -53,12 +53,14 @@
             overflow-x: hidden;
         }
 
-        /* Texto justificado en teléfono y PC */
+        /* Texto justificado sin cortar palabras con guiones */
         p {
             text-align: justify;
             text-justify: inter-word;
-            hyphens: auto;
-            -webkit-hyphens: auto;
+            hyphens: none;
+            -webkit-hyphens: none;
+            overflow-wrap: break-word;
+            word-break: normal;
         }
 
         /* Animación suave para el botón flotante de WhatsApp */
@@ -194,8 +196,9 @@
 
             <!-- Botón Menú Móvil / Tablet -->
             <button id="mobile-menu-btn" type="button" onclick="toggleMobileMenu()" aria-label="Abrir Menú De Navegación" aria-expanded="false"
-                    class="lg:hidden w-11 h-11 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 hover:text-sky-400 hover:border-sky-500/50 flex items-center justify-center transition">
-                <i id="mobile-menu-icon" class="fa-solid fa-bars text-lg"></i>
+                    class="lg:hidden h-11 px-3.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 hover:text-sky-400 hover:border-sky-500/50 inline-flex items-center justify-center gap-2 transition">
+                <i id="mobile-menu-icon" class="fa-solid fa-bars text-base"></i>
+                <span id="mobile-menu-label" class="text-xs sm:text-sm font-semibold tracking-wide">Menú</span>
             </button>
         </div>
 
@@ -233,19 +236,72 @@
             </h1>
 
             <p class="text-base sm:text-lg text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed">
-                Atención Profesional En Armado De PC, Mantenimiento Preventivo Y Correctivo De Equipos De Cómputo, Reparación De Hardware Y Software, Optimización De Sistemas Operativos, Instalación De Cámaras Analógicas E IP, Soporte Móvil, Servidores Multimedia DLNA, FTP, SMB, Puntos De Venta, Redes Wi-Fi Y Cableado Estructurado, Impresoras En Red, Respaldo Y Recuperación De Datos, Implementación Y Configuración De Dispositivos Streaming, Automatización E Iluminación Inteligente, Respaldo De Energía (Instalación Y Dimensionamiento De UPS / No-Break), Asesoría Y Cotización Para Compra De Equipo, Soporte Remoto, Seguridad Digital Y Limpieza De Amenazas, Migración De Equipo Y Clonación De Disco, Montaje Estructural Y Configuración De Pantallas.
+                Atención especializada para hogares, oficinas y negocios en Tecomán, Colima, Caleras, Madrid, Armería y Manzanillo. Desde armado, mantenimiento y reparación de PC hasta CCTV, redes Wi-Fi, puntos de venta POS, domótica, respaldo UPS y cursos presenciales o en línea.
             </p>
 
-            <div class="flex flex-wrap items-center justify-center gap-4">
-                <a href="#servicios" data-section-link="servicios" class="px-7 py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-emerald-600 hover:from-sky-400 hover:to-emerald-500 text-white font-bold text-sm sm:text-base shadow-lg shadow-sky-500/25 transition">
+            <!-- Botones principales de acción -->
+            <div class="flex flex-wrap items-center justify-center gap-3.5 mb-12">
+                <a href="#servicios" data-section-link="servicios" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-emerald-600 hover:from-sky-400 hover:to-emerald-500 text-white font-bold text-sm sm:text-base shadow-lg shadow-sky-500/25 transition">
                     Ver Servicios
                 </a>
-                <a href="#cursos" data-section-link="cursos" class="px-7 py-3.5 rounded-xl bg-slate-800/90 hover:bg-slate-800 border border-emerald-500/35 text-emerald-300 font-semibold text-sm sm:text-base transition">
+                <a href="#cursos" data-section-link="cursos" class="px-6 py-3.5 rounded-xl bg-slate-800/90 hover:bg-slate-800 border border-emerald-500/35 text-emerald-300 font-semibold text-sm sm:text-base transition">
                     Ver Cursos
                 </a>
-                <a href="#cotizador" data-section-link="cotizador" class="px-7 py-3.5 rounded-xl bg-slate-800/90 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold text-sm sm:text-base transition">
+                <a href="#cotizador" data-section-link="cotizador" class="px-6 py-3.5 rounded-xl bg-slate-800/90 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold text-sm sm:text-base transition">
                     Ir Al Cotizador Rápido
                 </a>
+                <a href="#testimonios" data-section-link="testimonios" class="px-6 py-3.5 rounded-xl bg-slate-800/90 hover:bg-slate-800 border border-amber-500/35 text-amber-300 font-semibold text-sm sm:text-base inline-flex items-center gap-2 transition">
+                    <i class="fa-solid fa-star text-amber-400 text-xs"></i>
+                    <span>Testimonios</span>
+                </a>
+            </div>
+
+            <!-- Accesos directos a todas las demás secciones del sitio -->
+            <div class="w-full max-w-4xl pt-8 border-t border-slate-800/80">
+                <span class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-4">
+                    Explora Todas Las Secciones Del Sitio
+                </span>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-left">
+                    <a href="#galeria" data-section-link="galeria" class="glass-card p-3.5 rounded-xl flex items-center gap-3 hover:border-sky-400/50 transition">
+                        <span class="w-9 h-9 rounded-lg bg-sky-500/15 border border-sky-500/30 text-sky-400 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-images text-sm"></i>
+                        </span>
+                        <div>
+                            <span class="block text-white font-bold text-xs sm:text-sm leading-tight">Galería</span>
+                            <span class="block text-[11px] text-slate-400">Trabajos reales</span>
+                        </div>
+                    </a>
+
+                    <a href="#por-que-elegirnos" data-section-link="por-que-elegirnos" class="glass-card p-3.5 rounded-xl flex items-center gap-3 hover:border-emerald-400/50 transition">
+                        <span class="w-9 h-9 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-shield-halved text-sm"></i>
+                        </span>
+                        <div>
+                            <span class="block text-white font-bold text-xs sm:text-sm leading-tight">¿Por Qué Elegirnos?</span>
+                            <span class="block text-[11px] text-slate-400">Respaldo y calidad</span>
+                        </div>
+                    </a>
+
+                    <a href="#cobertura" data-section-link="cobertura" class="glass-card p-3.5 rounded-xl flex items-center gap-3 hover:border-cyan-400/50 transition">
+                        <span class="w-9 h-9 rounded-lg bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-location-dot text-sm"></i>
+                        </span>
+                        <div>
+                            <span class="block text-white font-bold text-xs sm:text-sm leading-tight">Cobertura</span>
+                            <span class="block text-[11px] text-slate-400">Zonas y horarios</span>
+                        </div>
+                    </a>
+
+                    <a href="#faq" data-section-link="faq" class="glass-card p-3.5 rounded-xl flex items-center gap-3 hover:border-violet-400/50 transition">
+                        <span class="w-9 h-9 rounded-lg bg-violet-500/15 border border-violet-500/30 text-violet-400 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-circle-question text-sm"></i>
+                        </span>
+                        <div>
+                            <span class="block text-white font-bold text-xs sm:text-sm leading-tight">Preguntas</span>
+                            <span class="block text-[11px] text-slate-400">Dudas frecuentes</span>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -3109,6 +3165,7 @@
             const menu = document.getElementById("mobile-menu");
             const icon = document.getElementById("mobile-menu-icon");
             const btn = document.getElementById("mobile-menu-btn");
+            const label = document.getElementById("mobile-menu-label");
             if (!menu || !icon) return;
 
             const isHidden = menu.classList.contains("hidden");
@@ -3116,11 +3173,13 @@
                 menu.classList.remove("hidden");
                 icon.classList.remove("fa-bars");
                 icon.classList.add("fa-xmark");
+                if (label) label.textContent = "Cerrar";
                 if (btn) btn.setAttribute("aria-expanded", "true");
             } else {
                 menu.classList.add("hidden");
                 icon.classList.remove("fa-xmark");
                 icon.classList.add("fa-bars");
+                if (label) label.textContent = "Menú";
                 if (btn) btn.setAttribute("aria-expanded", "false");
             }
         }
@@ -3129,11 +3188,13 @@
             const menu = document.getElementById("mobile-menu");
             const icon = document.getElementById("mobile-menu-icon");
             const btn = document.getElementById("mobile-menu-btn");
+            const label = document.getElementById("mobile-menu-label");
             if (menu) menu.classList.add("hidden");
             if (icon) {
                 icon.classList.remove("fa-xmark");
                 icon.classList.add("fa-bars");
             }
+            if (label) label.textContent = "Menú";
             if (btn) btn.setAttribute("aria-expanded", "false");
         }
 
