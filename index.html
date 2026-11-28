@@ -7,7 +7,7 @@
     <!-- Favicon de Ingeniería En Sistemas (SVG integrado) -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0f19'/%3E%3Crect x='16' y='16' width='32' height='32' rx='6' fill='none' stroke='%2338bdf8' stroke-width='4'/%3E%3Crect x='25' y='25' width='14' height='14' rx='2' fill='%2310b981'/%3E%3Cpath d='M24 6v10M40 6v10M24 48v10M40 48v10M6 24h10M6 40h10M48 24h10M48 40h10' stroke='%2338bdf8' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
 
- <!-- Meta Etiquetas Generales Y Open Graph Para Compartir En Redes Y WhatsApp -->
+    <!-- Meta Etiquetas Generales Y Open Graph Para Compartir En Redes Y WhatsApp -->
     <meta name="description" content="ArrezolaCore - Ingeniería En Sistemas. Armado de PC a medida, mantenimiento de cómputo, reparación de hardware y software, optimización de sistemas, cámaras CCTV analógicas e IP, soporte y software móvil, servidores multimedia DLNA, puntos de venta POS, domótica, UPS, montaje de pantallas y cursos presenciales y en línea de ofimática y cómputo. Cobertura en Tecomán, Colima, Caleras, Madrid, Armería y Manzanillo.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ingarrezola.github.io/Arrezola/">
@@ -27,7 +27,7 @@
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Arrezola — Ingeniería En Sistemas",
-      "description": "Armado de PC, mantenimiento de cómputo, reparación de hardware y software, CCTV, redes Wi-Fi, servidores multimedia, puntos de venta POS, UPS, montaje de pantallas y cursos.",
+      "description": "Armado de PC, mantenimiento de cómputo, reparación de hardware y software, CCTV, redes Wi-Fi, servidores multimedia, puntos de venta POS, domótica, UPS, montaje de pantallas y cursos.",
       "telephone": "+52-313-118-1130",
       "areaServed": ["Tecomán", "Colima", "Caleras", "Madrid", "Armería", "Manzanillo"],
       "openingHours": ["Sa 08:00-18:00", "Su 13:00-14:00"]
@@ -51,6 +51,14 @@
             background-color: #0b0f19;
             color: #e2e8f0;
             overflow-x: hidden;
+        }
+
+        /* Texto justificado en teléfono y PC */
+        p {
+            text-align: justify;
+            text-justify: inter-word;
+            hyphens: auto;
+            -webkit-hyphens: auto;
         }
 
         /* Animación suave para el botón flotante de WhatsApp */
@@ -149,7 +157,7 @@
         }
     </style>
 </head>
-<body id="top" class="antialiased selection:bg-sky-500 selection:text-white">
+<body id="top" class="antialiased selection:bg-sky-500 selection:text-white min-h-screen flex flex-col">
 
     <!-- =========================================================================
          BARRA DE NAVEGACIÓN SUPERIOR
@@ -157,7 +165,7 @@
     <header class="fixed top-0 left-0 right-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
             <!-- Identidad de Marca -->
-            <a href="#top" class="flex items-center gap-3.5 mr-4 xl:mr-10 shrink-0 group">
+            <a href="#inicio" data-section-link="inicio" class="flex items-center gap-3.5 mr-4 xl:mr-10 shrink-0 group">
                 <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-500 to-emerald-500 flex items-center justify-center text-white text-lg shadow-lg shadow-sky-500/25 group-hover:scale-105 transition">
                     <i class="fa-solid fa-microchip"></i>
                 </div>
@@ -173,15 +181,15 @@
 
             <!-- Enlaces Principales (Escritorio) -->
             <nav class="hidden lg:flex items-center gap-4 xl:gap-5 text-xs xl:text-sm font-medium text-slate-300">
-                <a href="#inicio" class="hover:text-sky-400 transition whitespace-nowrap">Inicio</a>
-                <a href="#servicios" class="hover:text-sky-400 transition whitespace-nowrap">Servicios</a>
-                <a href="#cursos" class="hover:text-sky-400 transition whitespace-nowrap">Cursos</a>
-                <a href="#galeria" class="hover:text-sky-400 transition whitespace-nowrap">Galería De Trabajos</a>
-                <a href="#por-que-elegirnos" class="hover:text-sky-400 transition whitespace-nowrap">Por Qué Elegirnos</a>
-                <a href="#testimonios" class="hover:text-sky-400 transition whitespace-nowrap">Testimonios</a>
-                <a href="#cobertura" class="hover:text-sky-400 transition whitespace-nowrap">Cobertura Y Horarios</a>
-                <a href="#cotizador" class="hover:text-sky-400 transition whitespace-nowrap">Cotizador Rápido</a>
-                <a href="#faq" class="hover:text-sky-400 transition whitespace-nowrap">Preguntas Frecuentes</a>
+                <a href="#inicio" data-section-link="inicio" class="nav-sec-link hover:text-sky-400 transition whitespace-nowrap">Inicio</a>
+                <a href="#servicios" data-section-link="servicios" class="nav-sec-link hover:text-sky-400 transition whitespace-nowrap">Servicios</a>
+                <a href="#cursos" data-section-link="cursos" class="nav-sec-link hover:text-sky-400 transition whitespace-nowrap">Cursos</a>
+                <a href="#galeria" data-section-link="galeria" class="nav-sec-link hover:text-sky-400 transition whitespace-nowrap">Galería De Trabajos</a>
+                <a href="#por-que-elegirnos" data-section-link="por-que-elegirnos" class="nav-sec-link hover:text-sky-400 transition whitespace-nowrap">Por Qué Elegirnos</a>
+                <a href="#testimonios" data-section-link="testimonios" class="nav-sec-link hover:text-sky-400 transition whitespace-nowrap">Testimonios</a>
+                <a href="#cobertura" data-section-link="cobertura" class="nav-sec-link hover:text-sky-400 transition whitespace-nowrap">Cobertura Y Horarios</a>
+                <a href="#cotizador" data-section-link="cotizador" class="nav-sec-link hover:text-sky-400 transition whitespace-nowrap">Cotizador Rápido</a>
+                <a href="#faq" data-section-link="faq" class="nav-sec-link hover:text-sky-400 transition whitespace-nowrap">Preguntas Frecuentes</a>
             </nav>
 
             <!-- Botón Menú Móvil / Tablet -->
@@ -193,23 +201,26 @@
 
         <!-- Menú Desplegable Móvil / Tablet -->
         <div id="mobile-menu" class="hidden lg:hidden bg-slate-950/95 border-b border-slate-800 px-4 py-4 space-y-2 text-sm font-medium text-slate-300">
-            <a href="#inicio" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-slate-900 hover:text-sky-400 transition">Inicio</a>
-            <a href="#servicios" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-slate-900 hover:text-sky-400 transition">Servicios</a>
-            <a href="#cursos" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-slate-900 hover:text-sky-400 transition">Cursos</a>
-            <a href="#galeria" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-slate-900 hover:text-sky-400 transition">Galería De Trabajos</a>
-            <a href="#por-que-elegirnos" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-slate-900 hover:text-sky-400 transition">Por Qué Elegirnos</a>
-            <a href="#testimonios" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-slate-900 hover:text-sky-400 transition">Testimonios</a>
-            <a href="#cobertura" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-slate-900 hover:text-sky-400 transition">Cobertura Y Horarios</a>
-            <a href="#cotizador" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-slate-900 hover:text-sky-400 transition">Cotizador Rápido</a>
-            <a href="#faq" onclick="closeMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-slate-900 hover:text-sky-400 transition">Preguntas Frecuentes</a>
+            <a href="#inicio" data-section-link="inicio" onclick="closeMobileMenu()" class="nav-sec-link block px-4 py-2.5 rounded-xl hover:bg-slate-900 hover:text-sky-400 transition">Inicio</a>
+            <a href="#servicios" data-section-link="servicios" onclick="closeMobileMenu()" class="nav-sec-link block px-4 py-2.5 rounded-xl hover:bg-slate-900 hover:text-sky-400 transition">Servicios</a>
+            <a href="#cursos" data-section-link="cursos" onclick="closeMobileMenu()" class="nav-sec-link block px-4 py-2.5 rounded-xl hover:bg-slate-900 hover:text-sky-400 transition">Cursos</a>
+            <a href="#galeria" data-section-link="galeria" onclick="closeMobileMenu()" class="nav-sec-link block px-4 py-2.5 rounded-xl hover:bg-slate-900 hover:text-sky-400 transition">Galería De Trabajos</a>
+            <a href="#por-que-elegirnos" data-section-link="por-que-elegirnos" onclick="closeMobileMenu()" class="nav-sec-link block px-4 py-2.5 rounded-xl hover:bg-slate-900 hover:text-sky-400 transition">Por Qué Elegirnos</a>
+            <a href="#testimonios" data-section-link="testimonios" onclick="closeMobileMenu()" class="nav-sec-link block px-4 py-2.5 rounded-xl hover:bg-slate-900 hover:text-sky-400 transition">Testimonios</a>
+            <a href="#cobertura" data-section-link="cobertura" onclick="closeMobileMenu()" class="nav-sec-link block px-4 py-2.5 rounded-xl hover:bg-slate-900 hover:text-sky-400 transition">Cobertura Y Horarios</a>
+            <a href="#cotizador" data-section-link="cotizador" onclick="closeMobileMenu()" class="nav-sec-link block px-4 py-2.5 rounded-xl hover:bg-slate-900 hover:text-sky-400 transition">Cotizador Rápido</a>
+            <a href="#faq" data-section-link="faq" onclick="closeMobileMenu()" class="nav-sec-link block px-4 py-2.5 rounded-xl hover:bg-slate-900 hover:text-sky-400 transition">Preguntas Frecuentes</a>
         </div>
     </header>
+
+    <!-- Contenedor principal de vistas por sección -->
+    <main class="flex-1 pt-20">
 
     <!-- =========================================================================
          SECCIÓN HERO (PORTADA CENTRADA CON HOLGURA)
          ========================================================================= -->
-    <section id="inicio" class="relative pt-36 pb-20 lg:pt-44 lg:pb-28 overflow-hidden">
-        <div class="absolute top-24 left-1/2 -translate-x-1/2 w-[640px] h-[340px] bg-sky-500/15 rounded-full blur-[125px] -z-10"></div>
+    <section id="inicio" class="page-view relative pt-16 pb-20 lg:pt-24 lg:pb-28 overflow-hidden">
+        <div class="absolute top-12 left-1/2 -translate-x-1/2 w-[640px] h-[340px] bg-sky-500/15 rounded-full blur-[125px] -z-10"></div>
 
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
             <div class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs sm:text-sm font-medium mb-8">
@@ -221,18 +232,18 @@
                 Soluciones Tecnológicas Integrales Con <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-emerald-300">Arrezola</span>
             </h1>
 
-            <p class="text-base sm:text-lg text-slate-400 text-left sm:text-justify max-w-3xl mx-auto mb-10 leading-relaxed">
+            <p class="text-base sm:text-lg text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed">
                 Atención Profesional En Armado De PC, Mantenimiento Preventivo Y Correctivo De Equipos De Cómputo, Reparación De Hardware Y Software, Optimización De Sistemas Operativos, Instalación De Cámaras Analógicas E IP, Soporte Móvil, Servidores Multimedia DLNA, FTP, SMB, Puntos De Venta, Redes Wi-Fi Y Cableado Estructurado, Impresoras En Red, Respaldo Y Recuperación De Datos, Implementación Y Configuración De Dispositivos Streaming, Automatización E Iluminación Inteligente, Respaldo De Energía (Instalación Y Dimensionamiento De UPS / No-Break), Asesoría Y Cotización Para Compra De Equipo, Soporte Remoto, Seguridad Digital Y Limpieza De Amenazas, Migración De Equipo Y Clonación De Disco, Montaje Estructural Y Configuración De Pantallas.
             </p>
 
             <div class="flex flex-wrap items-center justify-center gap-4">
-                <a href="#servicios" class="px-7 py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-emerald-600 hover:from-sky-400 hover:to-emerald-500 text-white font-bold text-sm sm:text-base shadow-lg shadow-sky-500/25 transition">
+                <a href="#servicios" data-section-link="servicios" class="px-7 py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-emerald-600 hover:from-sky-400 hover:to-emerald-500 text-white font-bold text-sm sm:text-base shadow-lg shadow-sky-500/25 transition">
                     Ver Servicios
                 </a>
-                <a href="#cursos" class="px-7 py-3.5 rounded-xl bg-slate-800/90 hover:bg-slate-800 border border-emerald-500/35 text-emerald-300 font-semibold text-sm sm:text-base transition">
+                <a href="#cursos" data-section-link="cursos" class="px-7 py-3.5 rounded-xl bg-slate-800/90 hover:bg-slate-800 border border-emerald-500/35 text-emerald-300 font-semibold text-sm sm:text-base transition">
                     Ver Cursos
                 </a>
-                <a href="#cotizador" class="px-7 py-3.5 rounded-xl bg-slate-800/90 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold text-sm sm:text-base transition">
+                <a href="#cotizador" data-section-link="cotizador" class="px-7 py-3.5 rounded-xl bg-slate-800/90 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold text-sm sm:text-base transition">
                     Ir Al Cotizador Rápido
                 </a>
             </div>
@@ -242,7 +253,7 @@
     <!-- =========================================================================
          SECCIÓN DE 20 SERVICIOS CON BUSCADOR EN TIEMPO REAL Y FILTROS
          ========================================================================= -->
-    <section id="servicios" class="py-20 bg-slate-900/45 border-y border-slate-800/70">
+    <section id="servicios" class="page-view hidden py-20 bg-slate-900/45 border-y border-slate-800/70">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12 flex flex-col items-center">
                 <span class="text-emerald-400 font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3">Catálogo Especializado</span>
@@ -910,7 +921,7 @@
     <!-- =========================================================================
          SECCIÓN DE CURSOS (COSTO, MODALIDAD, CUPO Y EVIDENCIAS EN CLASE)
          ========================================================================= -->
-    <section id="cursos" class="py-20 bg-slate-900/35 border-b border-slate-800/70">
+    <section id="cursos" class="page-view hidden py-20 bg-slate-900/35 border-b border-slate-800/70">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-14 flex flex-col items-center">
                 <span class="text-emerald-400 font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3">Capacitación Práctica</span>
@@ -1331,7 +1342,7 @@
     <!-- =========================================================================
          GALERÍA FILTRABLE DE TRABAJOS REALIZADOS + LIGHTBOX CON NAVEGACIÓN
          ========================================================================= -->
-    <section id="galeria" class="py-20">
+    <section id="galeria" class="page-view hidden py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12 flex flex-col items-center">
                 <span class="text-sky-400 font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3">Portafolio Visual</span>
@@ -1556,7 +1567,7 @@
     <!-- =========================================================================
          SECCIÓN ¿POR QUÉ ELEGIR A ARREZOLA?
          ========================================================================= -->
-    <section id="por-que-elegirnos" class="py-20 bg-slate-900/45 border-y border-slate-800/70">
+    <section id="por-que-elegirnos" class="page-view hidden py-20 bg-slate-900/45 border-y border-slate-800/70">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16 flex flex-col items-center">
                 <span class="text-emerald-400 font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3">Respaldo Y Confianza</span>
@@ -1600,7 +1611,7 @@
     <!-- =========================================================================
          SECCIÓN DE TESTIMONIOS ROTATIVOS Y FORMULARIO DE RESEÑAS
          ========================================================================= -->
-    <section id="testimonios" class="py-20">
+    <section id="testimonios" class="page-view hidden py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-10 flex flex-col items-center">
                 <span class="text-sky-400 font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3">Experiencias Reales</span>
@@ -1788,7 +1799,7 @@
                         </p>
                     </div>
                 </div>
-                <a href="#cotizador" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs sm:text-sm whitespace-nowrap transition">
+                <a href="#cotizador" data-section-link="cotizador" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs sm:text-sm whitespace-nowrap transition">
                     Solicitar Diagnóstico
                 </a>
             </div>
@@ -1798,7 +1809,7 @@
     <!-- =========================================================================
          COBERTURA Y HORARIOS
          ========================================================================= -->
-    <section id="cobertura" class="py-20 bg-slate-900/45 border-y border-slate-800/70">
+    <section id="cobertura" class="page-view hidden py-20 bg-slate-900/45 border-y border-slate-800/70">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-14 flex flex-col items-center">
                 <span class="text-sky-400 font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3">Alcance Regional</span>
@@ -1869,7 +1880,7 @@
     <!-- =========================================================================
          COTIZADOR RÁPIDO (MODALIDAD, URGENCIA, VISTA PREVIA, WHATSAPP Y COPIAR)
          ========================================================================= -->
-    <section id="cotizador" class="py-20">
+    <section id="cotizador" class="page-view hidden py-20">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-12 flex flex-col items-center">
                 <span class="text-emerald-400 font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3">Solicitud Directa</span>
@@ -2017,7 +2028,7 @@
     <!-- =========================================================================
          PREGUNTAS FRECUENTES (FAQ DESPLEGABLE)
          ========================================================================= -->
-    <section id="faq" class="py-20 bg-slate-900/45 border-t border-slate-800/70">
+    <section id="faq" class="page-view hidden py-20 bg-slate-900/45 border-t border-slate-800/70">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-12 flex flex-col items-center">
                 <span class="text-sky-400 font-semibold text-xs sm:text-sm uppercase tracking-wider mb-3">Resuelve Tus Dudas</span>
@@ -2154,6 +2165,8 @@
             </div>
         </div>
     </section>
+
+    </main>
 
     <!-- =========================================================================
          PIE DE PÁGINA CON BOTONES DIRECTOS PARA COMPARTIR Y LLAMAR
@@ -2333,6 +2346,46 @@
             "san luis potosi": "San Luis Potosí",
             "san luis potosí": "San Luis Potosí"
         };
+
+        const SECCIONES_VALIDAS = [
+            "inicio",
+            "servicios",
+            "cursos",
+            "galeria",
+            "por-que-elegirnos",
+            "testimonios",
+            "cobertura",
+            "cotizador",
+            "faq"
+        ];
+        let seccionActual = "inicio";
+
+        function mostrarSeccion(seccionId, actualizarHash = true, desplazar = true) {
+            const destino = SECCIONES_VALIDAS.includes(seccionId) ? seccionId : "inicio";
+            seccionActual = destino;
+
+            document.querySelectorAll("section.page-view").forEach((sec) => {
+                sec.classList.toggle("hidden", sec.id !== destino);
+            });
+
+            document.querySelectorAll(".nav-sec-link").forEach((link) => {
+                const target = link.getAttribute("data-section-link");
+                const activo = target === destino;
+                link.classList.toggle("text-sky-400", activo);
+                link.classList.toggle("font-bold", activo);
+            });
+
+            if (actualizarHash) {
+                const nuevoHash = `#${destino}`;
+                if (window.location.hash !== nuevoHash) {
+                    history.pushState({ seccion: destino }, "", nuevoHash);
+                }
+            }
+
+            if (desplazar) {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+        }
 
         let listaResenas = [...RESENAS_INICIALES];
         let filtroResenaActual = "all";
@@ -2879,7 +2932,6 @@
         function prepararServicioEnCotizador(serviceName) {
             const serviceSelect = document.getElementById("quote-service");
             const modalitySelect = document.getElementById("quote-modality");
-            const quoteSection = document.getElementById("cotizador");
             const detailsInput = document.getElementById("quote-details");
 
             if (serviceSelect) {
@@ -2894,12 +2946,10 @@
             }
 
             actualizarVistaPreviaCotizacion();
+            mostrarSeccion("cotizador", true, true);
 
-            if (quoteSection) {
-                quoteSection.scrollIntoView({ behavior: "smooth", block: "start" });
-            }
             if (detailsInput) {
-                setTimeout(() => detailsInput.focus(), 450);
+                setTimeout(() => detailsInput.focus(), 250);
             }
         }
 
@@ -2913,7 +2963,6 @@
             const serviceSelect = document.getElementById("quote-service");
             const modalitySelect = document.getElementById("quote-modality");
             const urgencySelect = document.getElementById("quote-urgency");
-            const quoteSection = document.getElementById("cotizador");
             const detailsInput = document.getElementById("quote-details");
 
             if (serviceSelect) {
@@ -2936,12 +2985,10 @@
             }
 
             actualizarVistaPreviaCotizacion();
+            mostrarSeccion("cotizador", true, true);
 
-            if (quoteSection) {
-                quoteSection.scrollIntoView({ behavior: "smooth", block: "start" });
-            }
             if (detailsInput) {
-                setTimeout(() => detailsInput.focus(), 450);
+                setTimeout(() => detailsInput.focus(), 250);
             }
         }
 
@@ -3163,6 +3210,25 @@
                 if (yearEl) {
                     yearEl.textContent = new Date().getFullYear();
                 }
+
+                // Navegación por secciones tipo página independiente
+                document.querySelectorAll("[data-section-link]").forEach((link) => {
+                    link.addEventListener("click", (e) => {
+                        const targetSec = link.getAttribute("data-section-link");
+                        if (targetSec && SECCIONES_VALIDAS.includes(targetSec)) {
+                            e.preventDefault();
+                            mostrarSeccion(targetSec, true, true);
+                        }
+                    });
+                });
+
+                window.addEventListener("popstate", () => {
+                    const hashSec = (window.location.hash || "").replace(/^#/, "");
+                    mostrarSeccion(SECCIONES_VALIDAS.includes(hashSec) ? hashSec : "inicio", false, true);
+                });
+
+                const hashInicial = (window.location.hash || "").replace(/^#/, "");
+                mostrarSeccion(SECCIONES_VALIDAS.includes(hashInicial) ? hashInicial : "inicio", false, false);
 
                 cargarResenasDesdeSheet();
                 actualizarBotonAutoplay();
