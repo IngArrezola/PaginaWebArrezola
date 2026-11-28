@@ -236,7 +236,7 @@
             </h1>
 
             <p class="text-base sm:text-lg text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed">
-                Atención especializada para hogares, oficinas y negocios en Tecomán, Colima, Caleras, Madrid, Armería y Manzanillo. Desde armado, mantenimiento y reparación de PC hasta CCTV, redes Wi-Fi, puntos de venta POS, domótica, respaldo UPS y cursos presenciales o en línea.
+                Atención especializada para hogares, oficinas y negocios en Tecomán, Colima, Caleras, Madrid, Armería y Manzanillo. Desde armado, mantenimiento y reparación de PC hasta CCTV, redes Wi-Fi, puntos de venta, automatización e iluminación inteligente, respaldo de información, reguladores de voltaje y cursos presenciales o en línea.
             </p>
 
             <!-- Botones principales de acción -->
@@ -1925,7 +1925,7 @@
                         </li>
                         <li class="flex items-center justify-between py-2">
                             <span class="font-semibold text-white">Cursos (Sábados Y Domingos)</span>
-                            <span class="text-emerald-400 font-medium">2:00 PM - 4:00 PM (2 h/día)</span>
+                            <span class="text-emerald-400 font-medium">2:00 PM - 4:00 PM</span>
                         </li>
                     </ul>
                 </div>
@@ -1960,6 +1960,7 @@
                         <label for="quote-service" class="block text-sm font-semibold text-white mb-2">Servicio O Curso Requerido</label>
                         <select id="quote-service" onchange="actualizarVistaPreviaCotizacion()"
                                 class="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-slate-700 text-white focus:outline-none focus:border-sky-400 transition">
+                            <option value="" selected>Selecciona un servicio o curso...</option>
                             <option value="Armado De PC">Armado De PC</option>
                             <option value="Mantenimiento Preventivo Y Correctivo De Cómputo">Mantenimiento Preventivo Y Correctivo De Cómputo</option>
                             <option value="Reparación (Hardware Y Software)">Reparación (Hardware Y Software)</option>
@@ -1995,6 +1996,7 @@
                         <label for="quote-modality" class="block text-sm font-semibold text-white mb-2">Modalidad De Atención / Curso</label>
                         <select id="quote-modality" onchange="actualizarVistaPreviaCotizacion()"
                                 class="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-slate-700 text-white focus:outline-none focus:border-sky-400 transition">
+                            <option value="" selected>Selecciona una modalidad...</option>
                             <option value="A Domicilio">A Domicilio</option>
                             <option value="En Taller">En Taller</option>
                             <option value="Soporte Remoto">Soporte Remoto</option>
@@ -2007,6 +2009,7 @@
                         <label for="quote-urgency" class="block text-sm font-semibold text-white mb-2">Urgencia</label>
                         <select id="quote-urgency" onchange="actualizarVistaPreviaCotizacion()"
                                 class="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-slate-700 text-white focus:outline-none focus:border-sky-400 transition">
+                            <option value="" selected>Selecciona la urgencia...</option>
                             <option value="Lo antes posible">Lo antes posible</option>
                             <option value="Esta semana">Esta semana</option>
                             <option value="Este fin de semana (Curso)">Este fin de semana (Curso)</option>
@@ -2021,6 +2024,7 @@
                         <label for="quote-location-select" class="block text-sm font-semibold text-white mb-2">Localidad Principal</label>
                         <select id="quote-location-select" onchange="syncLocationInput(); actualizarVistaPreviaCotizacion();"
                                 class="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-slate-700 text-white focus:outline-none focus:border-sky-400 transition">
+                            <option value="" selected>Selecciona una localidad...</option>
                             <option value="Tecomán">Tecomán</option>
                             <option value="Colima">Colima</option>
                             <option value="Caleras">Caleras</option>
@@ -2101,7 +2105,7 @@
                     </button>
                     <div class="faq-answer px-6">
                         <p class="pb-5 text-slate-400 text-sm leading-relaxed">
-                            Los cursos se imparten los sábados y domingos a la 1:00 PM (1 hora el sábado y 1 hora el domingo), en modalidad presencial o en línea en vivo, con grupos reducidos de 6 a 8 alumnos según el curso para garantizar atención personalizada.
+                            Los cursos se imparten los sábados y domingos de 2:00 PM a 4:00 PM, en modalidad presencial o en línea en vivo, con grupos reducidos de 6 a 8 alumnos según el curso para garantizar atención personalizada.
                         </p>
                     </div>
                 </div>
@@ -3011,7 +3015,7 @@
 
         function consultarCurso(courseName, event) {
             if (event) event.preventDefault();
-            const msg = `Hola Arrezola, me gustaría pedir informes e inscribirme al curso: ${courseName} (Sábados y domingos a la 1:00 PM, 1 hora cada día). ¿Me confirmas disponibilidad en modalidad presencial o en línea?`;
+            const msg = `Hola Arrezola, me gustaría pedir informes e inscribirme al curso: ${courseName} (Sábados y domingos de 2:00 PM a 4:00 PM). ¿Me confirmas disponibilidad en modalidad presencial o en línea?`;
             openWhatsAppWithMessage(msg);
         }
 
@@ -3037,7 +3041,7 @@
             }
 
             if (detailsInput && !detailsInput.value.trim()) {
-                detailsInput.value = "Me interesa apartar lugar en el horario de sábados y domingos a la 1:00 PM (1 hora por sesión).";
+                detailsInput.value = "Me interesa apartar lugar en el horario de sábados y domingos de 2:00 PM a 4:00 PM.";
             }
 
             actualizarVistaPreviaCotizacion();
@@ -3076,12 +3080,12 @@
             const detailsInput = document.getElementById("quote-details");
 
             const nombre = nameInput ? nameInput.value.trim() : "";
-            const servicio = serviceSelect ? serviceSelect.value : "Solución En Sistemas";
-            const modalidad = modalitySelect ? modalitySelect.value : "A Domicilio";
-            const urgencia = urgencySelect ? urgencySelect.value : "Lo antes posible";
+            const servicio = serviceSelect ? serviceSelect.value.trim() : "";
+            const modalidad = modalitySelect ? modalitySelect.value.trim() : "";
+            const urgencia = urgencySelect ? urgencySelect.value.trim() : "";
             const localidad = (locationInput && locationInput.value.trim())
                 ? formatearLocalidad(locationInput.value)
-                : (locationSelect ? formatearLocalidad(locationSelect.value) : "No especificada");
+                : (locationSelect && locationSelect.value.trim() ? formatearLocalidad(locationSelect.value) : "");
             const detalles = detailsInput ? detailsInput.value.trim() : "";
 
             if (!detalles && !permitirVacio) {
@@ -3091,10 +3095,10 @@
             const lines = [
                 "Hola Arrezola, me gustaría solicitar información / cotización:",
                 nombre ? `• Nombre: ${nombre}` : null,
-                `• Servicio / Curso: ${servicio}`,
-                `• Modalidad: ${modalidad}`,
-                `• Urgencia: ${urgencia}`,
-                `• Localidad: ${localidad}`,
+                servicio ? `• Servicio / Curso: ${servicio}` : "• Servicio / Curso: (Por elegir)",
+                modalidad ? `• Modalidad: ${modalidad}` : "• Modalidad: (Por elegir)",
+                urgencia ? `• Urgencia: ${urgencia}` : "• Urgencia: (Por elegir)",
+                localidad ? `• Localidad: ${localidad}` : "• Localidad: (Por especificar)",
                 `• Detalles: ${detalles || "(Pendiente de describir)"}`
             ].filter(Boolean);
 
